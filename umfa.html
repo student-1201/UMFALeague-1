@@ -934,7 +934,7 @@
                 <div class="progress-matches">0 / 10 Group Matches Completed</div>
             </div>
             <div class="progress-bar-bg">
-                <div class="progress-bar-fill" id="progress-bar" style="width:0.0%"></div>
+                <div class="progress-bar-fill" id="progress-bar"></div>
             </div>
             <div class="progress-stages">
                 <div class="stage-point active">
@@ -1541,7 +1541,7 @@
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const bar = document.getElementById('progress-bar');
-                // Current progress - handled by server-side replacement
+                bar.style.width = '0.0%';
             }, 500);
         });
 
