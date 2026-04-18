@@ -1,0 +1,1616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UMFA League 1 | Union of MITS Football Associations</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #05070a;
+            --navy-deep: #0a111a;
+            --navy-card: rgba(16, 26, 40, 0.7);
+            --electric-green: #39FF14;
+            --gold: #FFD700;
+            --gold-muted: #b8860b;
+            --silver: #C0C0C0;
+            --text-main: #e0e0e0;
+            --text-dim: #a0a0a0;
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --primary-font: 'Barlow', sans-serif;
+            --heading-font: 'Bebas Neue', cursive;
+            --accent-font: 'Barlow Condensed', sans-serif;
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 50% 0%, #1a2a3a 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, #0a111a 0%, transparent 50%),
+                url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
+            background-attachment: fixed;
+            color: var(--text-main);
+            font-family: var(--primary-font);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-family: var(--heading-font);
+            font-size: 3.5rem;
+            letter-spacing: 2px;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #fff;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--electric-green);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .glass-card {
+            background: var(--navy-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition-smooth);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- NAVBAR --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(5, 7, 10, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 15px 0;
+            transition: var(--transition-smooth);
+        }
+
+        nav.scrolled {
+            padding: 10px 0;
+            background: rgba(5, 7, 10, 0.95);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1;
+        }
+
+        .logo-main {
+            font-family: var(--heading-font);
+            font-size: 2.2rem;
+            color: #fff;
+        }
+
+        .logo-main span {
+            color: var(--electric-green);
+        }
+
+        .logo-sub {
+            font-family: var(--accent-font);
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dim);
+            font-family: var(--accent-font);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--electric-green);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--electric-green);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- HERO --- */
+        #home {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at center, rgba(57, 255, 20, 0.05) 0%, transparent 70%);
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 10;
+        }
+
+        .badge-main {
+            font-family: var(--accent-font);
+            background: var(--electric-green);
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 4px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            font-family: var(--heading-font);
+            font-size: 6rem;
+            line-height: 0.9;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
+        }
+
+        .hero-subtitle {
+            font-family: var(--accent-font);
+            font-size: 1.8rem;
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .hero-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 2rem;
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-item i {
+            color: var(--electric-green);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .info-item span {
+            display: block;
+            font-family: var(--accent-font);
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+
+        .info-item strong {
+            display: block;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        /* --- PROGRESS BAR --- */
+        .progress-section {
+            padding: 60px 0;
+            background: rgba(10, 17, 26, 0.5);
+        }
+
+        .tracker-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 15px;
+        }
+
+        .progress-status {
+            font-family: var(--accent-font);
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--electric-green);
+        }
+
+        .progress-matches {
+            font-family: var(--accent-font);
+            color: var(--text-dim);
+        }
+
+        .progress-bar-bg {
+            height: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--electric-green), #00ff87);
+            width: 0%;
+            transition: width 2s ease-out;
+            box-shadow: 0 0 15px var(--electric-green);
+        }
+
+        .progress-stages {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .stage-point {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+
+        .stage-circle {
+            width: 14px;
+            height: 14px;
+            background: #2a2a2a;
+            border: 2px solid #555;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            transition: var(--transition-smooth);
+        }
+
+        .stage-point.active .stage-circle {
+            background: var(--electric-green);
+            border-color: var(--electric-green);
+            box-shadow: 0 0 10px var(--electric-green);
+        }
+
+        .stage-label {
+            font-family: var(--accent-font);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--text-dim);
+        }
+
+        .stage-point.active .stage-label {
+            color: #fff;
+        }
+
+        /* --- FIXTURES --- */
+        #fixtures {
+            padding: 100px 0;
+        }
+
+        .fixtures-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 25px;
+        }
+
+        .fixture-card {
+            background: var(--navy-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .fixture-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(57, 255, 20, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .fixture-header {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--accent-font);
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .fixture-date {
+            font-weight: 600;
+            color: var(--electric-green);
+        }
+
+        .fixture-main {
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .match-teams {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            gap: 20px;
+        }
+
+        .team-side {
+            flex: 1;
+            text-align: center;
+        }
+
+        .team-name {
+            font-family: var(--accent-font);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .vs-box {
+            background: #222;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--heading-font);
+            font-size: 1.2rem;
+            border: 1px solid #444;
+            color: var(--electric-green);
+        }
+
+        .fixture-footer {
+            padding: 15px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px dotted var(--glass-border);
+        }
+
+        .match-meta {
+            font-family: var(--accent-font);
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .fixture-card.locked {
+            opacity: 0.7;
+        }
+
+        .locked-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition-smooth);
+            z-index: 5;
+        }
+
+        .fixture-card.locked:hover .locked-overlay {
+            opacity: 1;
+        }
+
+        .locked-overlay i {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        /* --- POINTS TABLE --- */
+        #points-table {
+            padding: 100px 0;
+            background: rgba(10, 17, 26, 0.3);
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: var(--accent-font);
+            background: var(--navy-card);
+        }
+
+        th {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 18px 15px;
+            text-align: left;
+            text-transform: uppercase;
+            color: var(--electric-green);
+            font-weight: 700;
+            letter-spacing: 1px;
+            border-bottom: 2px solid var(--glass-border);
+        }
+
+        td {
+            padding: 16px 15px;
+            border-bottom: 1px solid var(--glass-border);
+            color: #fff;
+            font-size: 1.05rem;
+        }
+
+        tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        tr:hover {
+            background: rgba(57, 255, 20, 0.05);
+        }
+
+        .pos { width: 60px; text-align: center; font-weight: 700; }
+        .team-cell { font-weight: 600; display: flex; align-items: center; gap: 10px; }
+        .stat { text-align: center; }
+        .pts { font-weight: 700; color: var(--electric-green); text-align: center; width: 80px; }
+
+        .zone-final { border-left: 5px solid var(--gold); }
+        .zone-sf { border-left: 5px solid var(--silver); }
+
+        .legend {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            font-family: var(--accent-font);
+            font-size: 0.85rem;
+        }
+
+        .legend-item { display: flex; align-items: center; gap: 8px; }
+        .color-dot { width: 12px; height: 12px; border-radius: 2px; }
+        .dot-gold { background: var(--gold); }
+        .dot-silver { background: var(--silver); }
+
+        /* --- TOP SCORERS --- */
+        #scorers {
+            padding: 100px 0;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            border: 2px dashed var(--glass-border);
+            border-radius: 12px;
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            color: var(--text-dim);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .empty-state h3 {
+            font-family: var(--accent-font);
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .empty-state p {
+            color: var(--text-dim);
+            margin-bottom: 25px;
+        }
+
+        .btn-expand {
+            background: transparent;
+            border: 1px solid var(--electric-green);
+            color: var(--electric-green);
+            padding: 10px 25px;
+            font-family: var(--accent-font);
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-expand:hover {
+            background: var(--electric-green);
+            color: #000;
+        }
+
+        /* --- SQUADS --- */
+        #squads {
+            padding: 100px 0;
+            background: rgba(10, 17, 26, 0.4);
+        }
+
+        .squads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .squad-card {
+            perspective: 1000px;
+            height: 450px;
+        }
+
+        .squad-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .squad-card.active .squad-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .squad-front, .squad-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+        }
+
+        .squad-front {
+            background: var(--navy-card);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .squad-back {
+            background: #111;
+            transform: rotateY(180deg);
+            padding: 20px;
+        }
+
+        .squad-accent {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+        }
+
+        .squad-logo-placeholder {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #fff;
+            border: 2px solid var(--glass-border);
+        }
+
+        .squad-name-main {
+            font-family: var(--heading-font);
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .captain-badge {
+            background: var(--gold);
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-family: var(--accent-font);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .player-count {
+            color: var(--text-dim);
+            font-family: var(--accent-font);
+            font-size: 0.9rem;
+        }
+
+        .squad-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+            max-height: 320px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .squad-list::-webkit-scrollbar { width: 4px; }
+        .squad-list::-webkit-scrollbar-thumb { background: #444; border-radius: 2px; }
+
+        .player-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--accent-font);
+            font-size: 0.9rem;
+            padding: 5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .player-num {
+            width: 24px;
+            height: 24px;
+            background: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            border-radius: 3px;
+            color: var(--electric-green);
+            flex-shrink: 0;
+        }
+
+        .player-item.star-captain {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--gold);
+        }
+
+        /* --- RULES --- */
+        #rules {
+            padding: 100px 0;
+        }
+
+        .rules-card {
+            max-width: 800px;
+            margin: 0 auto;
+            border-top: 4px solid var(--gold);
+        }
+
+        .rules-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .official-badge {
+            font-family: var(--heading-font);
+            font-size: 2rem;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .rules-list {
+            list-style: none;
+            display: grid;
+            gap: 15px;
+        }
+
+        .rule-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .rule-item i {
+            color: var(--gold);
+            margin-top: 4px;
+        }
+
+        .rule-text strong {
+            display: block;
+            color: #fff;
+            margin-bottom: 5px;
+            font-family: var(--accent-font);
+            text-transform: uppercase;
+        }
+
+        .rule-text p {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #05070a;
+            padding: 80px 0 40px;
+            border-top: 1px solid var(--glass-border);
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: var(--heading-font);
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-logo span { color: var(--electric-green); }
+
+        .footer-subs {
+            font-family: var(--accent-font);
+            color: var(--text-dim);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+
+        .copyright {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+
+        /* --- MOBILE --- */
+        @media (max-width: 992px) {
+            .hero-title { font-size: 4rem; }
+            .section-title { font-size: 2.8rem; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--navy-deep);
+                flex-direction: column;
+                padding: 40px;
+                transition: 0.5s;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .mobile-toggle { display: block; }
+            .hero-info { flex-direction: column; gap: 20px; }
+            .fixtures-grid { grid-template-columns: 1fr; }
+            .squads-grid { grid-template-columns: 1fr; }
+            .hero-title { font-size: 3.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <div class="container nav-content">
+            <a href="#home" class="logo">
+                <div class="logo-main">UMFA<span>.</span>LEAGUE 1</div>
+                <div class="logo-sub">Union of MITS Football Associations</div>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#fixtures">Fixtures</a></li>
+                <li><a href="#points-table">Points Table</a></li>
+                <li><a href="#scorers">Top Scorers</a></li>
+                <li><a href="#squads">Squads</a></li>
+                <li><a href="#rules">Rules</a></li>
+            </ul>
+            <div class="mobile-toggle" id="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home">
+        <div class="hero-content reveal active">
+            <div class="badge-main">MITS College Premiere</div>
+            <h1 class="hero-title">UMFA LEAGUE - 1</h1>
+            <p class="hero-subtitle">Championship 2026</p>
+            
+            <div class="hero-info">
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Venue</span>
+                    <strong>MITS College Playground</strong>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Status</span>
+                    <strong style="color: var(--electric-green);">IN PROGRESS</strong>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-users"></i>
+                    <span>Organized by</span>
+                    <strong>UMFA</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRESS OVERVIEW -->
+    <section id="overview" class="progress-section">
+        <div class="container tracker-container">
+            <div class="progress-header">
+                <div class="progress-status">Tournament Tracker</div>
+                <div class="progress-matches">0 / 10 Group Matches Completed</div>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progress-bar"></div>
+            </div>
+            <div class="progress-stages">
+                <div class="stage-point active">
+                    <div class="stage-circle"></div>
+                    <div class="stage-label">Group Stage</div>
+                </div>
+                <div class="stage-point">
+                    <div class="stage-circle"></div>
+                    <div class="stage-label">Semifinal</div>
+                </div>
+                <div class="stage-point">
+                    <div class="stage-circle"></div>
+                    <div class="stage-label">Final</div>
+                </div>
+                <div class="stage-point">
+                    <div class="stage-circle"></div>
+                    <div class="stage-label">Champion</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FIXTURES -->
+    <section id="fixtures">
+        <div class="container">
+            <h2 class="section-title">Fixture Schedule</h2>
+            <div class="fixtures-grid">
+                <!-- Match 1 -->
+                <div class="fixture-card reveal">
+                    <div class="fixture-header">
+                        <span class="fixture-date">Sat Apr 19</span>
+                        <span>06:30 AM (Morning)</span>
+                    </div>
+                    <div class="fixture-main">
+                        <div class="match-teams">
+                            <div class="team-side"><div class="team-name">Malay11</div></div>
+                            <div class="vs-box">VS</div>
+                            <div class="team-side"><div class="team-name">Yash11</div></div>
+                        </div>
+                    </div>
+                    <div class="fixture-footer">
+                        <div class="match-meta">
+                            <span><i class="fas fa-trophy"></i> League Match</span>
+                            <span><i class="fas fa-circle-info"></i> Upcoming</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Match 2 -->
+                <div class="fixture-card reveal">
+                    <div class="fixture-header">
+                        <span class="fixture-date">Sat Apr 19</span>
+                        <span>04:00 PM (Evening)</span>
+                    </div>
+                    <div class="fixture-main">
+                        <div class="match-teams">
+                            <div class="team-side"><div class="team-name">Abhay11</div></div>
+                            <div class="vs-box">VS</div>
+                            <div class="team-side"><div class="team-name">Khagesh11</div></div>
+                        </div>
+                    </div>
+                    <div class="fixture-footer">
+                        <div class="match-meta">
+                            <span><i class="fas fa-trophy"></i> League Match</span>
+                            <span><i class="fas fa-circle-info"></i> Upcoming</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Match 3 -->
+                <div class="fixture-card reveal">
+                    <div class="fixture-header">
+                        <span class="fixture-date">Sun Apr 20</span>
+                        <span>06:30 AM (Morning)</span>
+                    </div>
+                    <div class="fixture-main">
+                        <div class="match-teams">
+                            <div class="team-side"><div class="team-name">Khagesh11</div></div>
+                            <div class="vs-box">VS</div>
+                            <div class="team-side"><div class="team-name">Yash11</div></div>
+                        </div>
+                    </div>
+                    <div class="fixture-footer">
+                        <div class="match-meta">
+                            <span><i class="fas fa-trophy"></i> League Match</span>
+                            <span><i class="fas fa-circle-info"></i> Upcoming</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Match 4 -->
+                <div class="fixture-card reveal">
+                    <div class="fixture-header">
+                        <span class="fixture-date">Sun Apr 20</span>
+                        <span>04:00 PM (Evening)</span>
+                    </div>
+                    <div class="fixture-main">
+                        <div class="match-teams">
+                            <div class="team-side"><div class="team-name">Krish11</div></div>
+                            <div class="vs-box">VS</div>
+                            <div class="team-side"><div class="team-name">Abhay11</div></div>
+                        </div>
+                    </div>
+                    <div class="fixture-footer">
+                        <div class="match-meta">
+                            <span><i class="fas fa-trophy"></i> League Match</span>
+                            <span><i class="fas fa-circle-info"></i> Upcoming</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Match 5 -->
+                <div class="fixture-card reveal">
+                    <div class="fixture-header">
+                        <span class="fixture-date">Mon Apr 21</span>
+                        <span>06:30 AM (Morning)</span>
+                    </div>
+                    <div class="fixture-main">
+                        <div class="match-teams">
+                            <div class="team-side"><div class="team-name">Krish11</div></div>
+                            <div class="vs-box">VS</div>
+                            <div class="team-side"><div class="team-name">Khagesh11</div></div>
+                        </div>
+                    </div>
+                    <div class="fixture-footer">
+                        <div class="match-meta">
+                            <span><i class="fas fa-trophy"></i> League Match</span>
+                            <span><i class="fas fa-circle-info"></i> Upcoming</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Match 6 -->
+                <div class="fixture-card reveal">
+                    <div class="fixture-header">
+                        <span class="fixture-date">Mon Apr 21</span>
+                        <span>04:00 PM (Evening)</span>
+                    </div>
+                    <div class="fixture-main">
+                        <div class="match-teams">
+                            <div class="team-side"><div class="team-name">Malay11</div></div>
+                            <div class="vs-box">VS</div>
+                            <div class="team-side"><div class="team-name">Abhay11</div></div>
+                        </div>
+                    </div>
+                    <div class="fixture-footer">
+                        <div class="match-meta">
+                            <span><i class="fas fa-trophy"></i> League Match</span>
+                            <span><i class="fas fa-circle-info"></i> Upcoming</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Match 7 -->
+                <div class="fixture-card reveal">
+                    <div class="fixture-header">
+                        <span class="fixture-date">Tue Apr 22</span>
+                        <span>06:30 AM (Morning)</span>
+                    </div>
+                    <div class="fixture-main">
+                        <div class="match-teams">
+                            <div class="team-side"><div class="team-name">Abhay11</div></div>
+                            <div class="vs-box">VS</div>
+                            <div class="team-side"><div class="team-name">Yash11</div></div>
+                        </div>
+                    </div>
+                    <div class="fixture-footer">
+                        <div class="match-meta">
+                            <span><i class="fas fa-trophy"></i> League Match</span>
+                            <span><i class="fas fa-circle-info"></i> Upcoming</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Match 8 -->
+                <div class="fixture-card reveal">
+                    <div class="fixture-header">
+                        <span class="fixture-date">Tue Apr 22</span>
+                        <span>04:00 PM (Evening)</span>
+                    </div>
+                    <div class="fixture-main">
+                        <div class="match-teams">
+                            <div class="team-side"><div class="team-name">Malay11</div></div>
+                            <div class="vs-box">VS</div>
+                            <div class="team-side"><div class="team-name">Krish11</div></div>
+                        </div>
+                    </div>
+                    <div class="fixture-footer">
+                        <div class="match-meta">
+                            <span><i class="fas fa-trophy"></i> League Match</span>
+                            <span><i class="fas fa-circle-info"></i> Upcoming</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Match 9 -->
+                <div class="fixture-card reveal">
+                    <div class="fixture-header">
+                        <span class="fixture-date">Wed Apr 23</span>
+                        <span>06:30 AM (Morning)</span>
+                    </div>
+                    <div class="fixture-main">
+                        <div class="match-teams">
+                            <div class="team-side"><div class="team-name">Malay11</div></div>
+                            <div class="vs-box">VS</div>
+                            <div class="team-side"><div class="team-name">Khagesh11</div></div>
+                        </div>
+                    </div>
+                    <div class="fixture-footer">
+                        <div class="match-meta">
+                            <span><i class="fas fa-trophy"></i> League Match</span>
+                            <span><i class="fas fa-circle-info"></i> Upcoming</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Match 10 -->
+                <div class="fixture-card reveal">
+                    <div class="fixture-header">
+                        <span class="fixture-date">Wed Apr 23</span>
+                        <span>04:00 PM (Evening)</span>
+                    </div>
+                    <div class="fixture-main">
+                        <div class="match-teams">
+                            <div class="team-side"><div class="team-name">Yash11</div></div>
+                            <div class="vs-box">VS</div>
+                            <div class="team-side"><div class="team-name">Krish11</div></div>
+                        </div>
+                    </div>
+                    <div class="fixture-footer">
+                        <div class="match-meta">
+                            <span><i class="fas fa-trophy"></i> League Match</span>
+                            <span><i class="fas fa-circle-info"></i> Upcoming</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Semifinal -->
+                <div class="fixture-card reveal locked">
+                    <div class="fixture-header">
+                        <span class="fixture-date">TBD</span>
+                        <span>TBD</span>
+                    </div>
+                    <div class="fixture-main">
+                        <div class="match-teams">
+                            <div class="team-side"><div class="team-name">2nd Place</div></div>
+                            <div class="vs-box">VS</div>
+                            <div class="team-side"><div class="team-name">3rd Place</div></div>
+                        </div>
+                    </div>
+                    <div class="fixture-footer">
+                        <div class="match-meta">
+                            <span><i class="fas fa-lock"></i> Semifinal</span>
+                        </div>
+                    </div>
+                    <div class="locked-overlay">
+                        <i class="fas fa-lock"></i>
+                        <span>Awaiting Group Stage results</span>
+                    </div>
+                </div>
+
+                <!-- Final -->
+                <div class="fixture-card reveal locked">
+                    <div class="fixture-header">
+                        <span class="fixture-date">TBD</span>
+                        <span>TBD</span>
+                    </div>
+                    <div class="fixture-main">
+                        <div class="match-teams">
+                            <div class="team-side"><div class="team-name">1st Place</div></div>
+                            <div class="vs-box">VS</div>
+                            <div class="team-side"><div class="team-name">SF Winner</div></div>
+                        </div>
+                    </div>
+                    <div class="fixture-footer">
+                        <div class="match-meta">
+                            <span><i class="fas fa-crown"></i> Grand Final</span>
+                        </div>
+                    </div>
+                    <div class="locked-overlay">
+                        <i class="fas fa-lock"></i>
+                        <span>Locked</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- POINTS TABLE -->
+    <section id="points-table">
+        <div class="container">
+            <h2 class="section-title">Points Table</h2>
+            <div class="table-responsive reveal">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="pos">Pos</th>
+                            <th>Team</th>
+                            <th class="stat">MP</th>
+                            <th class="stat">W</th>
+                            <th class="stat">D</th>
+                            <th class="stat">L</th>
+                            <th class="stat">GF</th>
+                            <th class="stat">GA</th>
+                            <th class="stat">GD</th>
+                            <th class="pts">Pts</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="zone-final">
+                            <td class="pos">1</td>
+                            <td class="team-cell">Abhay11</td>
+                            <td class="stat">0</td><td class="stat">0</td><td class="stat">0</td><td class="stat">0</td><td class="stat">0</td><td class="stat">0</td><td class="stat">0</td>
+                            <td class="pts">0</td>
+                        </tr>
+                        <tr class="zone-sf">
+                            <td class="pos">2</td>
+                            <td class="team-cell">Khagesh11</td>
+                            <td class="stat">0</td><td class="stat">0</td><td class="stat">0</td><td class="stat">0</td><td class="stat">0</td><td class="stat">0</td><td class="stat">0</td>
+                            <td class="pts">0</td>
+                        </tr>
+                        <tr class="zone-sf">
+                            <td class="pos">3</td>
+                            <td class="team-cell">Krish11</td>
+                            <td class="stat">0</td><td class="stat">0</td><td class="stat">0</td><td class="stat">0</td><td class="stat">0</td><td class="stat">0</td><td class="stat">0</td>
+                            <td class="pts">0</td>
+                        </tr>
+                        <tr>
+                            <td class="pos">4</td>
+                            <td class="team-cell">Malay11</td>
+                            <td class="stat">0</td><td class="stat">0</td><td class="stat">0</td><td class="stat">0</td><td class="stat">0</td><td class="stat">0</td><td class="stat">0</td>
+                            <td class="pts">0</td>
+                        </tr>
+                        <tr>
+                            <td class="pos">5</td>
+                            <td class="team-cell">Yash11</td>
+                            <td class="stat">0</td><td class="stat">0</td><td class="stat">0</td><td class="stat">0</td><td class="stat">0</td><td class="stat">0</td><td class="stat">0</td>
+                            <td class="pts">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="legend">
+                <div class="legend-item"><div class="color-dot dot-gold"></div> <span>Direct Final</span></div>
+                <div class="legend-item"><div class="color-dot dot-silver"></div> <span>Semifinal Zone</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TOP SCORERS -->
+    <section id="scorers">
+        <div class="container">
+            <h2 class="section-title">Goal Kings</h2>
+            <div class="empty-state reveal">
+                <i class="fas fa-futbol fa-bounce"></i>
+                <h3>No goals scored yet</h3>
+                <p>The leaderboard will light up once the first whistle blows. Check back after Match 1!</p>
+                <button class="btn-expand" disabled>Show All Scorers</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAMS / SQUADS -->
+    <section id="squads">
+        <div class="container">
+            <h2 class="section-title">Team Squads</h2>
+            <div class="squads-grid">
+                
+                <!-- Malay11 -->
+                <div class="squad-card reveal">
+                    <div class="squad-card-inner">
+                        <div class="squad-front glass-card">
+                            <div class="squad-accent" style="background: #e63946;"></div>
+                            <div class="squad-logo-placeholder">M</div>
+                            <div class="squad-name-main">Malay11</div>
+                            <div class="captain-badge">Malay (C)</div>
+                            <div class="player-count">12 Official Players</div>
+                            <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 10px;">Click to view roster</p>
+                        </div>
+                        <div class="squad-back glass-card">
+                            <div class="squad-accent" style="background: #e63946;"></div>
+                            <h4 style="font-family: var(--heading-font); border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 10px;">MALAY11 ROSTER</h4>
+                            <div class="squad-list">
+                                <div class="player-item star-captain"><span class="player-num">M</span> Malay (C)</div>
+                                <div class="player-item"><span class="player-num">1</span> Alok</div>
+                                <div class="player-item"><span class="player-num">2</span> Varun</div>
+                                <div class="player-item"><span class="player-num">3</span> Rolex</div>
+                                <div class="player-item"><span class="player-num">4</span> Purusti</div>
+                                <div class="player-item"><span class="player-num">5</span> Ismail</div>
+                                <div class="player-item"><span class="player-num">6</span> Karna</div>
+                                <div class="player-item"><span class="player-num">7</span> Surendra</div>
+                                <div class="player-item"><span class="player-num">8</span> Rihan</div>
+                                <div class="player-item"><span class="player-num">9</span> Kapilash</div>
+                                <div class="player-item"><span class="player-num">10</span> Arjun</div>
+                                <div class="player-item"><span class="player-num">11</span> Ghenu</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Abhay11 -->
+                <div class="squad-card reveal">
+                    <div class="squad-card-inner">
+                        <div class="squad-front glass-card">
+                            <div class="squad-accent" style="background: #4cc9f0;"></div>
+                            <div class="squad-logo-placeholder">A</div>
+                            <div class="squad-name-main">Abhay11</div>
+                            <div class="captain-badge">Abhay (C)</div>
+                            <div class="player-count">12 Official Players</div>
+                            <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 10px;">Click to view roster</p>
+                        </div>
+                        <div class="squad-back glass-card">
+                            <div class="squad-accent" style="background: #4cc9f0;"></div>
+                            <h4 style="font-family: var(--heading-font); border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 10px;">ABHAY11 ROSTER</h4>
+                            <div class="squad-list">
+                                <div class="player-item star-captain"><span class="player-num">A</span> Abhay (C)</div>
+                                <div class="player-item"><span class="player-num">1</span> Sritam</div>
+                                <div class="player-item"><span class="player-num">2</span> Abhinash</div>
+                                <div class="player-item"><span class="player-num">3</span> Gunanidhi</div>
+                                <div class="player-item"><span class="player-num">4</span> Shyam</div>
+                                <div class="player-item"><span class="player-num">5</span> Munna</div>
+                                <div class="player-item"><span class="player-num">6</span> Sushant</div>
+                                <div class="player-item"><span class="player-num">7</span> Aju</div>
+                                <div class="player-item"><span class="player-num">8</span> Pratap</div>
+                                <div class="player-item"><span class="player-num">9</span> Ramesh</div>
+                                <div class="player-item"><span class="player-num">10</span> Susanta</div>
+                                <div class="player-item"><span class="player-num">11</span> Harish</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Khagesh11 -->
+                <div class="squad-card reveal">
+                    <div class="squad-card-inner">
+                        <div class="squad-front glass-card">
+                            <div class="squad-accent" style="background: #f72585;"></div>
+                            <div class="squad-logo-placeholder">K</div>
+                            <div class="squad-name-main">Khagesh11</div>
+                            <div class="captain-badge">Khagesh (C)</div>
+                            <div class="player-count">12 Official Players</div>
+                            <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 10px;">Click to view roster</p>
+                        </div>
+                        <div class="squad-back glass-card">
+                            <div class="squad-accent" style="background: #f72585;"></div>
+                            <h4 style="font-family: var(--heading-font); border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 10px;">KHAGESH11 ROSTER</h4>
+                            <div class="squad-list">
+                                <div class="player-item star-captain"><span class="player-num">K</span> Khagesh (C)</div>
+                                <div class="player-item"><span class="player-num">1</span> Pradeep</div>
+                                <div class="player-item"><span class="player-num">2</span> Gideon</div>
+                                <div class="player-item"><span class="player-num">3</span> Micheal</div>
+                                <div class="player-item"><span class="player-num">4</span> Naba</div>
+                                <div class="player-item"><span class="player-num">5</span> Salman</div>
+                                <div class="player-item"><span class="player-num">6</span> Kiran</div>
+                                <div class="player-item"><span class="player-num">7</span> Krushna AG</div>
+                                <div class="player-item"><span class="player-num">8</span> Lipun</div>
+                                <div class="player-item"><span class="player-num">9</span> Prashant</div>
+                                <div class="player-item"><span class="player-num">10</span> Soumya</div>
+                                <div class="player-item"><span class="player-num">11</span> Dhana/Manoj</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Yash11 -->
+                <div class="squad-card reveal">
+                    <div class="squad-card-inner">
+                        <div class="squad-front glass-card">
+                            <div class="squad-accent" style="background: #7209b7;"></div>
+                            <div class="squad-logo-placeholder">Y</div>
+                            <div class="squad-name-main">Yash11</div>
+                            <div class="captain-badge">Yash (C)</div>
+                            <div class="player-count">12 Official Players</div>
+                            <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 10px;">Click to view roster</p>
+                        </div>
+                        <div class="squad-back glass-card">
+                            <div class="squad-accent" style="background: #7209b7;"></div>
+                            <h4 style="font-family: var(--heading-font); border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 10px;">YASH11 ROSTER</h4>
+                            <div class="squad-list">
+                                <div class="player-item star-captain"><span class="player-num">Y</span> Yash (C)</div>
+                                <div class="player-item"><span class="player-num">1</span> Janme</div>
+                                <div class="player-item"><span class="player-num">2</span> Rabindra</div>
+                                <div class="player-item"><span class="player-num">3</span> Micheal AG</div>
+                                <div class="player-item"><span class="player-num">4</span> Mophin</div>
+                                <div class="player-item"><span class="player-num">5</span> Bikram</div>
+                                <div class="player-item"><span class="player-num">6</span> Purna</div>
+                                <div class="player-item"><span class="player-num">7</span> Akshay</div>
+                                <div class="player-item"><span class="player-num">8</span> Rohan</div>
+                                <div class="player-item"><span class="player-num">9</span> Chuchu</div>
+                                <div class="player-item"><span class="player-num">10</span> Rakesh</div>
+                                <div class="player-item"><span class="player-num">11</span> Charan</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Krish11 -->
+                <div class="squad-card reveal">
+                    <div class="squad-card-inner">
+                        <div class="squad-front glass-card">
+                            <div class="squad-accent" style="background: #ffb703;"></div>
+                            <div class="squad-logo-placeholder">K</div>
+                            <div class="squad-name-main">Krish11</div>
+                            <div class="captain-badge">Krushna (C)</div>
+                            <div class="player-count">13 Official Players</div>
+                            <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 10px;">Click to view roster</p>
+                        </div>
+                        <div class="squad-back glass-card">
+                            <div class="squad-accent" style="background: #ffb703;"></div>
+                            <h4 style="font-family: var(--heading-font); border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 10px;">KRISH11 ROSTER</h4>
+                            <div class="squad-list">
+                                <div class="player-item star-captain"><span class="player-num">K</span> Krushna (C)</div>
+                                <div class="player-item"><span class="player-num">1</span> Giri</div>
+                                <div class="player-item"><span class="player-num">2</span> Surya</div>
+                                <div class="player-item"><span class="player-num">3</span> Mantosh</div>
+                                <div class="player-item"><span class="player-num">4</span> Tushar</div>
+                                <div class="player-item"><span class="player-num">5</span> Rahul</div>
+                                <div class="player-item"><span class="player-num">6</span> Bunny</div>
+                                <div class="player-item"><span class="player-num">7</span> Naresh</div>
+                                <div class="player-item"><span class="player-num">8</span> Tapan</div>
+                                <div class="player-item"><span class="player-num">9</span> Laba</div>
+                                <div class="player-item"><span class="player-num">10</span> Purushottam</div>
+                                <div class="player-item"><span class="player-num">11</span> Chandan</div>
+                                <div class="player-item"><span class="player-num">12</span> Sunil</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- RULES SECTION -->
+    <section id="rules">
+        <div class="container">
+            <h2 class="section-title">Tournament Rules</h2>
+            <div class="rules-card glass-card reveal">
+                <div class="rules-header">
+                    <div class="official-badge">
+                        <i class="fas fa-shield-halved"></i>
+                        <span>OFFICIAL GUIDELINES</span>
+                        <i class="fas fa-shield-halved"></i>
+                    </div>
+                </div>
+                <div class="rules-list">
+                    <div class="rule-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div class="rule-text">
+                            <strong>Points System</strong>
+                            <p>Win: 3 Points | Draw: 1 Point | Loss: 0 Points</p>
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <i class="fas fa-arrow-right-to-bracket"></i>
+                        <div class="rule-text">
+                            <strong>Qualification Path</strong>
+                            <p>The top team after the group stage qualifies directly for the Grand Final. The 2nd and 3rd placed teams move to the Semifinal.</p>
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <i class="fas fa-flag"></i>
+                        <div class="rule-text">
+                            <strong>Standard Regulations</strong>
+                            <p>All matches follow official FIFA standard rules for fair play and conduct.</p>
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <i class="fas fa-stopwatch"></i>
+                        <div class="rule-text">
+                            <strong>Match Timing</strong>
+                            <p>Morning sessions start at 06:30 AM. Evening sessions kick off at 04:00 PM precisely.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">UMFA<span>.</span>LEAGUE 1</div>
+            <div class="footer-subs">Union of MITS Football Associations | MITS College</div>
+            
+            
+            <p class="copyright">&copy; 2026 UMFA League 1. All rights reserved. <br> Designed for Champions.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Progress Bar Animation
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const bar = document.getElementById('progress-bar');
+                // Current progress is 0%, but we trigger the width 0 to be sure it animates if we ever add data
+                bar.style.width = '0%';
+            }, 500);
+        });
+
+        // Sticky Navbar & Active Link Highlight
+        const nav = document.getElementById('navbar');
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const navUl = document.getElementById('nav-links');
+
+        mobileToggle.addEventListener('click', () => {
+            navUl.classList.toggle('active');
+            mobileToggle.querySelector('i').classList.toggle('fa-bars');
+            mobileToggle.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // Close mobile menu on link click
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navUl.classList.remove('active');
+                mobileToggle.querySelector('i').classList.add('fa-bars');
+                mobileToggle.querySelector('i').classList.remove('fa-times');
+            });
+        });
+
+        // Squad Card Flip
+        const squadCards = document.querySelectorAll('.squad-card');
+        squadCards.forEach(card => {
+            card.addEventListener('click', () => {
+                card.classList.toggle('active');
+            });
+        });
+
+        // Reveal Animation on Scroll
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            const triggerBottom = window.innerHeight * 0.9;
+            revealElements.forEach(el => {
+                const top = el.getBoundingClientRect().top;
+                if (top < triggerBottom) {
+                    el.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        // Initial call
+        revealOnScroll();
+    </script>
+</body>
+</html>
