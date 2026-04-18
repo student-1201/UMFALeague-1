@@ -1,0 +1,104 @@
+{
+    "matches": [
+        {
+            "id": "match_1",
+            "team1": "Abhay11",
+            "team2": "Krish11",
+            "round": 1,
+            "score1": 2,
+            "score2": 1,
+            "date": "Sun Apr 19",
+            "time": "06:30 AM (Morning)"
+        },
+        {
+            "id": "match_2",
+            "team1": "Khagesh11",
+            "team2": "Yash11",
+            "round": 1,
+            "score1": 0,
+            "score2": 0,
+            "date": "Sun Apr 19",
+            "time": "04:00 PM (Evening)"
+        },
+        {
+            "id": "match_3",
+            "team1": "Malay11",
+            "team2": "Krish11",
+            "round": 2,
+            "score1": null,
+            "score2": null,
+            "date": "Mon Apr 20",
+            "time": "06:30 AM (Morning)"
+        },
+        {
+            "id": "match_4",
+            "team1": "Abhay11",
+            "team2": "Khagesh11",
+            "round": 2,
+            "score1": null,
+            "score2": null,
+            "date": "Mon Apr 20",
+            "time": "04:00 PM (Evening)"
+        },
+        {
+            "id": "match_5",
+            "team1": "Malay11",
+            "team2": "Yash11",
+            "round": 3,
+            "score1": null,
+            "score2": null,
+            "date": "Tue Apr 21",
+            "time": "06:30 AM (Morning)"
+        },
+        {
+            "id": "match_6",
+            "team1": "Krish11",
+            "team2": "Khagesh11",
+            "round": 3,
+            "score1": null,
+            "score2": null,
+            "date": "Tue Apr 21",
+            "time": "04:00 PM (Evening)"
+        },
+        {
+            "id": "match_7",
+            "team1": "Malay11",
+            "team2": "Khagesh11",
+            "round": 4,
+            "score1": null,
+            "score2": null,
+            "date": "Wed Apr 22",
+            "time": "06:30 AM (Morning)"
+        },
+        {
+            "id": "match_8",
+            "team1": "Yash11",
+            "team2": "Abhay11",
+            "round": 4,
+            "score1": null,
+            "score2": null,
+            "date": "Wed Apr 22",
+            "time": "04:00 PM (Evening)"
+        },
+        {
+            "id": "match_9",
+            "team1": "Malay11",
+            "team2": "Abhay11",
+            "round": 5,
+            "score1": null,
+            "score2": null,
+            "date": "Thu Apr 23",
+            "time": "06:30 AM (Morning)"
+        },
+        {
+            "id": "match_10",
+            "team1": "Yash11",
+            "team2": "Krish11",
+            "round": 5,
+            "score1": null,
+            "score2": null,
+            "date": "Thu Apr 23",
+            "time": "04:00 PM (Evening)"
+        }
+    ]
+}

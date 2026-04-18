@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UMFA League 1 | UMFA</title>
+    <title>{{title}} | {{organizer}}</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -320,7 +320,7 @@
         .progress-bar-fill {
             height: 100%;
             background: linear-gradient(90deg, var(--electric-green), #00ff87);
-            width: 20%;
+            width: {{progress_percent}}%;
             transition: width 2s ease-out;
             box-shadow: 0 0 15px var(--electric-green);
         }
@@ -884,8 +884,8 @@
     <nav id="navbar">
         <div class="container nav-content">
             <a href="#home" class="logo">
-                <div class="logo-main">UMFA<span>.</span>League<span>.</span>1</div>
-                <div class="logo-sub">Union of MITS Football Associations</div>
+                <div class="logo-main">{{title_split}}</div>
+                <div class="logo-sub">{{organizer_full}}</div>
             </a>
             <ul class="nav-links" id="nav-links">
                 <li><a href="#home">Home</a></li>
@@ -905,25 +905,25 @@
     <!-- HERO SECTION -->
     <section id="home">
         <div class="hero-content reveal active">
-            <div class="badge-main">MITS College Premiere</div>
-            <h1 class="hero-title">UMFA League 1</h1>
-            <p class="hero-subtitle">Championship 2026</p>
+            <div class="badge-main">{{badge_text}}</div>
+            <h1 class="hero-title">{{title_main}}</h1>
+            <p class="hero-subtitle">{{subtitle}}</p>
             
             <div class="hero-info">
                 <div class="info-item">
                     <i class="fas fa-map-marker-alt"></i>
                     <span>Venue</span>
-                    <strong>MITS College Playground</strong>
+                    <strong>{{venue}}</strong>
                 </div>
                 <div class="info-item">
                     <i class="fas fa-calendar-check"></i>
                     <span>Status</span>
-                    <strong style="color: var(--electric-green);">IN PROGRESS</strong>
+                    <strong style="color: var(--electric-green);">{{status}}</strong>
                 </div>
                 <div class="info-item">
                     <i class="fas fa-users"></i>
                     <span>Organized by</span>
-                    <strong>UMFA</strong>
+                    <strong>{{organizer}}</strong>
                 </div>
             </div>
         </div>
@@ -934,7 +934,7 @@
         <div class="container tracker-container">
             <div class="progress-header">
                 <div class="progress-status">Tournament Tracker</div>
-                <div class="progress-matches">2 / 10 Group Matches Completed</div>
+                <div class="progress-matches">{{progress_text}}</div>
             </div>
             <div class="progress-bar-bg">
                 <div class="progress-bar-fill" id="progress-bar"></div>
@@ -965,219 +965,7 @@
         <div class="container">
             <h2 class="section-title">Fixture Schedule</h2>
             <div class="fixtures-grid">
-                
-                <div class="fixture-card reveal">
-                    <div class="fixture-header">
-                        <span class="fixture-date">Sun Apr 19</span>
-                        <span>06:30 AM (Morning)</span>
-                    </div>
-                    <div class="fixture-main">
-                        <div class="match-teams">
-                            <div class="team-side"><div class="team-name">Abhay11</div></div>
-                            <div class="vs-box">2 - 1</div>
-                            <div class="team-side"><div class="team-name">Krish11</div></div>
-                        </div>
-                    </div>
-                    <div class="fixture-footer">
-                        <div class="match-meta">
-                            <span><i class="fas fa-trophy"></i> League Match</span>
-                            <span><i class="fas fa-circle-info"></i> Completed</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="fixture-card reveal">
-                    <div class="fixture-header">
-                        <span class="fixture-date">Sun Apr 19</span>
-                        <span>04:00 PM (Evening)</span>
-                    </div>
-                    <div class="fixture-main">
-                        <div class="match-teams">
-                            <div class="team-side"><div class="team-name">Khagesh11</div></div>
-                            <div class="vs-box">0 - 0</div>
-                            <div class="team-side"><div class="team-name">Yash11</div></div>
-                        </div>
-                    </div>
-                    <div class="fixture-footer">
-                        <div class="match-meta">
-                            <span><i class="fas fa-trophy"></i> League Match</span>
-                            <span><i class="fas fa-circle-info"></i> Completed</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="fixture-card reveal">
-                    <div class="fixture-header">
-                        <span class="fixture-date">Mon Apr 20</span>
-                        <span>06:30 AM (Morning)</span>
-                    </div>
-                    <div class="fixture-main">
-                        <div class="match-teams">
-                            <div class="team-side"><div class="team-name">Malay11</div></div>
-                            <div class="vs-box">VS</div>
-                            <div class="team-side"><div class="team-name">Krish11</div></div>
-                        </div>
-                    </div>
-                    <div class="fixture-footer">
-                        <div class="match-meta">
-                            <span><i class="fas fa-trophy"></i> League Match</span>
-                            <span><i class="fas fa-circle-info"></i> Upcoming</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="fixture-card reveal">
-                    <div class="fixture-header">
-                        <span class="fixture-date">Mon Apr 20</span>
-                        <span>04:00 PM (Evening)</span>
-                    </div>
-                    <div class="fixture-main">
-                        <div class="match-teams">
-                            <div class="team-side"><div class="team-name">Abhay11</div></div>
-                            <div class="vs-box">VS</div>
-                            <div class="team-side"><div class="team-name">Khagesh11</div></div>
-                        </div>
-                    </div>
-                    <div class="fixture-footer">
-                        <div class="match-meta">
-                            <span><i class="fas fa-trophy"></i> League Match</span>
-                            <span><i class="fas fa-circle-info"></i> Upcoming</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="fixture-card reveal">
-                    <div class="fixture-header">
-                        <span class="fixture-date">Tue Apr 21</span>
-                        <span>06:30 AM (Morning)</span>
-                    </div>
-                    <div class="fixture-main">
-                        <div class="match-teams">
-                            <div class="team-side"><div class="team-name">Malay11</div></div>
-                            <div class="vs-box">VS</div>
-                            <div class="team-side"><div class="team-name">Yash11</div></div>
-                        </div>
-                    </div>
-                    <div class="fixture-footer">
-                        <div class="match-meta">
-                            <span><i class="fas fa-trophy"></i> League Match</span>
-                            <span><i class="fas fa-circle-info"></i> Upcoming</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="fixture-card reveal">
-                    <div class="fixture-header">
-                        <span class="fixture-date">Tue Apr 21</span>
-                        <span>04:00 PM (Evening)</span>
-                    </div>
-                    <div class="fixture-main">
-                        <div class="match-teams">
-                            <div class="team-side"><div class="team-name">Krish11</div></div>
-                            <div class="vs-box">VS</div>
-                            <div class="team-side"><div class="team-name">Khagesh11</div></div>
-                        </div>
-                    </div>
-                    <div class="fixture-footer">
-                        <div class="match-meta">
-                            <span><i class="fas fa-trophy"></i> League Match</span>
-                            <span><i class="fas fa-circle-info"></i> Upcoming</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="fixture-card reveal">
-                    <div class="fixture-header">
-                        <span class="fixture-date">Wed Apr 22</span>
-                        <span>06:30 AM (Morning)</span>
-                    </div>
-                    <div class="fixture-main">
-                        <div class="match-teams">
-                            <div class="team-side"><div class="team-name">Malay11</div></div>
-                            <div class="vs-box">VS</div>
-                            <div class="team-side"><div class="team-name">Khagesh11</div></div>
-                        </div>
-                    </div>
-                    <div class="fixture-footer">
-                        <div class="match-meta">
-                            <span><i class="fas fa-trophy"></i> League Match</span>
-                            <span><i class="fas fa-circle-info"></i> Upcoming</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="fixture-card reveal">
-                    <div class="fixture-header">
-                        <span class="fixture-date">Wed Apr 22</span>
-                        <span>04:00 PM (Evening)</span>
-                    </div>
-                    <div class="fixture-main">
-                        <div class="match-teams">
-                            <div class="team-side"><div class="team-name">Yash11</div></div>
-                            <div class="vs-box">VS</div>
-                            <div class="team-side"><div class="team-name">Abhay11</div></div>
-                        </div>
-                    </div>
-                    <div class="fixture-footer">
-                        <div class="match-meta">
-                            <span><i class="fas fa-trophy"></i> League Match</span>
-                            <span><i class="fas fa-circle-info"></i> Upcoming</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="fixture-card reveal">
-                    <div class="fixture-header">
-                        <span class="fixture-date">Thu Apr 23</span>
-                        <span>06:30 AM (Morning)</span>
-                    </div>
-                    <div class="fixture-main">
-                        <div class="match-teams">
-                            <div class="team-side"><div class="team-name">Malay11</div></div>
-                            <div class="vs-box">VS</div>
-                            <div class="team-side"><div class="team-name">Abhay11</div></div>
-                        </div>
-                    </div>
-                    <div class="fixture-footer">
-                        <div class="match-meta">
-                            <span><i class="fas fa-trophy"></i> League Match</span>
-                            <span><i class="fas fa-circle-info"></i> Upcoming</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="fixture-card reveal">
-                    <div class="fixture-header">
-                        <span class="fixture-date">Thu Apr 23</span>
-                        <span>04:00 PM (Evening)</span>
-                    </div>
-                    <div class="fixture-main">
-                        <div class="match-teams">
-                            <div class="team-side"><div class="team-name">Yash11</div></div>
-                            <div class="vs-box">VS</div>
-                            <div class="team-side"><div class="team-name">Krish11</div></div>
-                        </div>
-                    </div>
-                    <div class="fixture-footer">
-                        <div class="match-meta">
-                            <span><i class="fas fa-trophy"></i> League Match</span>
-                            <span><i class="fas fa-circle-info"></i> Upcoming</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="fixture-card reveal locked">
-                    <div class="fixture-header"><span>TBD</span><span>TBD</span></div>
-                    <div class="fixture-main">
-                        <div class="match-teams">
-                            <div class="team-side"><div class="team-name">2nd Place</div></div>
-                            <div class="vs-box">VS</div>
-                            <div class="team-side"><div class="team-name">3rd Place</div></div>
-                        </div>
-                    </div>
-                    <div class="fixture-footer"><div class="match-meta"><span><i class="fas fa-lock"></i> Semifinal</span></div></div>
-                </div>
-                <div class="fixture-card reveal locked">
-                    <div class="fixture-header"><span>TBD</span><span>TBD</span></div>
-                    <div class="fixture-main">
-                        <div class="match-teams">
-                            <div class="team-side"><div class="team-name">1st Place</div></div>
-                            <div class="vs-box">VS</div>
-                            <div class="team-side"><div class="team-name">SF Winner</div></div>
-                        </div>
-                    </div>
-                    <div class="fixture-footer"><div class="match-meta"><span><i class="fas fa-crown"></i> Grand Final</span></div></div>
-                </div>
+                {{fixtures_placeholder}}
             </div>
         </div>
     </section>
@@ -1203,67 +991,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
-                        <tr class="zone-final">
-                            <td class="pos">1</td>
-                            <td class="team-cell">Abhay11</td>
-                            <td class="stat">1</td>
-                            <td class="stat">1</td>
-                            <td class="stat">0</td>
-                            <td class="stat">0</td>
-                            <td class="stat">2</td>
-                            <td class="stat">1</td>
-                            <td class="stat">1</td>
-                            <td class="pts">3</td>
-                        </tr>
-                        <tr class="zone-sf">
-                            <td class="pos">2</td>
-                            <td class="team-cell">Khagesh11</td>
-                            <td class="stat">1</td>
-                            <td class="stat">0</td>
-                            <td class="stat">1</td>
-                            <td class="stat">0</td>
-                            <td class="stat">0</td>
-                            <td class="stat">0</td>
-                            <td class="stat">0</td>
-                            <td class="pts">1</td>
-                        </tr>
-                        <tr class="zone-sf">
-                            <td class="pos">3</td>
-                            <td class="team-cell">Yash11</td>
-                            <td class="stat">1</td>
-                            <td class="stat">0</td>
-                            <td class="stat">1</td>
-                            <td class="stat">0</td>
-                            <td class="stat">0</td>
-                            <td class="stat">0</td>
-                            <td class="stat">0</td>
-                            <td class="pts">1</td>
-                        </tr>
-                        <tr class="">
-                            <td class="pos">4</td>
-                            <td class="team-cell">Malay11</td>
-                            <td class="stat">0</td>
-                            <td class="stat">0</td>
-                            <td class="stat">0</td>
-                            <td class="stat">0</td>
-                            <td class="stat">0</td>
-                            <td class="stat">0</td>
-                            <td class="stat">0</td>
-                            <td class="pts">0</td>
-                        </tr>
-                        <tr class="">
-                            <td class="pos">5</td>
-                            <td class="team-cell">Krish11</td>
-                            <td class="stat">1</td>
-                            <td class="stat">0</td>
-                            <td class="stat">0</td>
-                            <td class="stat">1</td>
-                            <td class="stat">1</td>
-                            <td class="stat">2</td>
-                            <td class="stat">-1</td>
-                            <td class="pts">0</td>
-                        </tr>
+                        {{table_placeholder}}
                     </tbody>
                 </table>
             </div>
@@ -1278,13 +1006,7 @@
     <section id="scorers">
         <div class="container">
             <h2 class="section-title">Goal Kings</h2>
-            
-            <div class="empty-state reveal">
-                <i class="fas fa-futbol fa-bounce"></i>
-                <h3>No goals scored yet</h3>
-                <p>Leaderboard updates automatically after match inputs.</p>
-                <button class="btn-expand" disabled>Show All Scorers</button>
-            </div>
+            {{scorers_placeholder}}
         </div>
     </section>
 
@@ -1293,97 +1015,7 @@
         <div class="container">
             <h2 class="section-title">Team Squads</h2>
             <div class="squads-grid">
-                
-                <div class="squad-card reveal">
-                    <div class="squad-card-inner">
-                        <div class="squad-front glass-card">
-                            <div class="squad-accent" style="background: #e63946;"></div>
-                            <div class="squad-logo-placeholder">M</div>
-                            <div class="squad-name-main">Malay11</div>
-                            <div class="captain-badge">Malay (C)</div>
-                            <div class="player-count">12 Official Players</div>
-                        </div>
-                        <div class="squad-back glass-card">
-                            <div class="squad-accent" style="background: #e63946;"></div>
-                            <h4 style="font-family: var(--heading-font); border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 10px;">MALAY11 ROSTER</h4>
-                            <div class="squad-list">
-                                <div class="player-item "><span class="player-num">1</span> Alok</div><div class="player-item "><span class="player-num">2</span> Varun</div><div class="player-item "><span class="player-num">3</span> Rolex</div><div class="player-item "><span class="player-num">4</span> Purusti</div><div class="player-item "><span class="player-num">5</span> Ismail</div><div class="player-item "><span class="player-num">6</span> Karna</div><div class="player-item "><span class="player-num">7</span> Surendra</div><div class="player-item "><span class="player-num">8</span> Rihan</div><div class="player-item "><span class="player-num">9</span> Kapilash</div><div class="player-item "><span class="player-num">10</span> Arjun</div><div class="player-item "><span class="player-num">11</span> Ghenu</div><div class="player-item star-captain"><span class="player-num">M</span> Malay (Captain)</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="squad-card reveal">
-                    <div class="squad-card-inner">
-                        <div class="squad-front glass-card">
-                            <div class="squad-accent" style="background: #4cc9f0;"></div>
-                            <div class="squad-logo-placeholder">A</div>
-                            <div class="squad-name-main">Abhay11</div>
-                            <div class="captain-badge">Abhay (C)</div>
-                            <div class="player-count">12 Official Players</div>
-                        </div>
-                        <div class="squad-back glass-card">
-                            <div class="squad-accent" style="background: #4cc9f0;"></div>
-                            <h4 style="font-family: var(--heading-font); border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 10px;">ABHAY11 ROSTER</h4>
-                            <div class="squad-list">
-                                <div class="player-item "><span class="player-num">1</span> Sritam</div><div class="player-item "><span class="player-num">2</span> Abhinash</div><div class="player-item "><span class="player-num">3</span> Gunanidhi</div><div class="player-item "><span class="player-num">4</span> Shyam</div><div class="player-item "><span class="player-num">5</span> Munna</div><div class="player-item "><span class="player-num">6</span> Sushant</div><div class="player-item "><span class="player-num">7</span> Aju</div><div class="player-item "><span class="player-num">8</span> Pratap</div><div class="player-item "><span class="player-num">9</span> Ramesh</div><div class="player-item "><span class="player-num">10</span> Susanta</div><div class="player-item "><span class="player-num">11</span> Harish</div><div class="player-item star-captain"><span class="player-num">A</span> Abhay (Captain)</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="squad-card reveal">
-                    <div class="squad-card-inner">
-                        <div class="squad-front glass-card">
-                            <div class="squad-accent" style="background: #f72585;"></div>
-                            <div class="squad-logo-placeholder">K</div>
-                            <div class="squad-name-main">Khagesh11</div>
-                            <div class="captain-badge">Khagesh (C)</div>
-                            <div class="player-count">12 Official Players</div>
-                        </div>
-                        <div class="squad-back glass-card">
-                            <div class="squad-accent" style="background: #f72585;"></div>
-                            <h4 style="font-family: var(--heading-font); border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 10px;">KHAGESH11 ROSTER</h4>
-                            <div class="squad-list">
-                                <div class="player-item "><span class="player-num">1</span> Pradeep</div><div class="player-item "><span class="player-num">2</span> Gideon</div><div class="player-item "><span class="player-num">3</span> Micheal</div><div class="player-item "><span class="player-num">4</span> Naba</div><div class="player-item "><span class="player-num">5</span> Salman</div><div class="player-item "><span class="player-num">6</span> Kiran</div><div class="player-item "><span class="player-num">7</span> Krushna AG</div><div class="player-item "><span class="player-num">8</span> Lipun</div><div class="player-item "><span class="player-num">9</span> Prashant</div><div class="player-item "><span class="player-num">10</span> Soumya</div><div class="player-item "><span class="player-num">11</span> Dhana/Manoj</div><div class="player-item star-captain"><span class="player-num">K</span> Khagesh (Captain)</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="squad-card reveal">
-                    <div class="squad-card-inner">
-                        <div class="squad-front glass-card">
-                            <div class="squad-accent" style="background: #7209b7;"></div>
-                            <div class="squad-logo-placeholder">Y</div>
-                            <div class="squad-name-main">Yash11</div>
-                            <div class="captain-badge">Yash (C)</div>
-                            <div class="player-count">12 Official Players</div>
-                        </div>
-                        <div class="squad-back glass-card">
-                            <div class="squad-accent" style="background: #7209b7;"></div>
-                            <h4 style="font-family: var(--heading-font); border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 10px;">YASH11 ROSTER</h4>
-                            <div class="squad-list">
-                                <div class="player-item "><span class="player-num">1</span> Janme</div><div class="player-item "><span class="player-num">2</span> Rabindra</div><div class="player-item "><span class="player-num">3</span> Micheal AG</div><div class="player-item "><span class="player-num">4</span> Mophin</div><div class="player-item "><span class="player-num">5</span> Bikram</div><div class="player-item "><span class="player-num">6</span> Purna</div><div class="player-item "><span class="player-num">7</span> Akshay</div><div class="player-item "><span class="player-num">8</span> Rohan</div><div class="player-item "><span class="player-num">9</span> Chuchu</div><div class="player-item "><span class="player-num">10</span> Rakesh</div><div class="player-item "><span class="player-num">11</span> Charan</div><div class="player-item star-captain"><span class="player-num">Y</span> Yash (Captain)</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="squad-card reveal">
-                    <div class="squad-card-inner">
-                        <div class="squad-front glass-card">
-                            <div class="squad-accent" style="background: #ffb703;"></div>
-                            <div class="squad-logo-placeholder">K</div>
-                            <div class="squad-name-main">Krish11</div>
-                            <div class="captain-badge">Krushna (C)</div>
-                            <div class="player-count">13 Official Players</div>
-                        </div>
-                        <div class="squad-back glass-card">
-                            <div class="squad-accent" style="background: #ffb703;"></div>
-                            <h4 style="font-family: var(--heading-font); border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 10px;">KRISH11 ROSTER</h4>
-                            <div class="squad-list">
-                                <div class="player-item "><span class="player-num">1</span> Giri</div><div class="player-item "><span class="player-num">2</span> Surya</div><div class="player-item "><span class="player-num">3</span> Mantosh</div><div class="player-item "><span class="player-num">4</span> Tushar</div><div class="player-item "><span class="player-num">5</span> Rahul</div><div class="player-item "><span class="player-num">6</span> Bunny</div><div class="player-item "><span class="player-num">7</span> Naresh</div><div class="player-item "><span class="player-num">8</span> Tapan</div><div class="player-item "><span class="player-num">9</span> Laba</div><div class="player-item "><span class="player-num">10</span> Purushottam</div><div class="player-item "><span class="player-num">11</span> Chandan</div><div class="player-item "><span class="player-num">12</span> Sunil</div><div class="player-item star-captain"><span class="player-num">K</span> Krushna (Captain)</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {{squads_placeholder}}
             </div>
         </div>
     </section>
@@ -1437,9 +1069,9 @@
     <!-- FOOTER -->
     <footer>
         <div class="container">
-            <div class="footer-logo">UMFA<span>.</span>League<span>.</span>1</div>
-            <div class="footer-subs">Union of MITS Football Associations | MITS College</div>
-            <p class="copyright">&copy; 2026 UMFA League 1. All rights reserved. <br> Designed for Champions.</p>
+            <div class="footer-logo">{{title_split}}</div>
+            <div class="footer-subs">{{organizer_full}} | {{venue_short}}</div>
+            <p class="copyright">&copy; 2026 {{organizer}} League 1. All rights reserved. <br> Designed for Champions.</p>
         </div>
     </footer>
 
@@ -1450,7 +1082,7 @@
             setTimeout(() => {
                 const bar = document.getElementById('progress-bar');
                 // Target width is set via template
-                bar.style.width = '20%';
+                bar.style.width = '{{progress_percent}}%';
             }, 500);
         });
 
