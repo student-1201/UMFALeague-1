@@ -111,10 +111,10 @@ def generate_squads_html(teams):
         players_html = ""
         # Sort players: Captain first
         sorted_players = sorted(t['players'], key=lambda p: p.get('isCaptain', False), reverse=True)
-        for p in sorted_players:
+        for i, p in enumerate(sorted_players, 1):
             star_class = "star-captain" if p.get('isCaptain') else ""
             players_html += f"""
-                                <div class="player-item {star_class}"><span class="player-num">{p['num']}</span> {p['name']}</div>"""
+                                <div class="player-item {star_class}"><span class="player-num">{i}</span> {p['name']}</div>"""
         
         html += f"""
                 <div class="squad-card reveal">
