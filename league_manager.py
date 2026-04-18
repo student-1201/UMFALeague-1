@@ -119,8 +119,8 @@ def render_html(teams_data, standings, matches):
     # 1. Basic Info
     t_info = teams_data['tournament']
     template = template.replace('{{title}}', t_info['name'])
-    template = template.replace('{{title_main}}', t_info['name'])
-    template = template.replace('{{title_split}}', t_info['name'].replace(' ', '<span>.</span>'))
+    template = template.replace('{{title_main}}', 'UMFA League 1')
+    template = template.replace('{{title_split}}', 'UMFA<span>.</span>League<span>.</span>1')
     template = template.replace('{{subtitle}}', t_info['subtitle'])
     template = template.replace('{{organizer}}', t_info['organizer'])
     template = template.replace('{{organizer_full}}', "Union of MITS Football Associations")
@@ -253,13 +253,6 @@ def render_html(teams_data, standings, matches):
 
 def main():
     teams_data, results_data = load_data()
-    
-    # Generate fixtures if not present
-    if not results_data.get("matches"):
-        print("Generating new fixtures...")
-        base_fixtures = generate_fixtures(teams_data['teams'])
-        results_data["matches"] = get_match_schedule(base_fixtures, teams_data['tournament']['start_date'])
-        save_results(results_data)
     
     standings = calculate_standings(teams_data['teams'], results_data['matches'])
     render_html(teams_data, standings, results_data['matches'])
