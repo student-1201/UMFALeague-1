@@ -1,0 +1,103 @@
+[
+    {
+        "id": "malay11",
+        "name": "Malay11",
+        "captain": "Malay",
+        "accent": "#e63946",
+        "players": [
+            {"num": "M", "name": "Malay (C)", "isCaptain": true},
+            {"num": "1", "name": "Alok"},
+            {"num": "2", "name": "Varun"},
+            {"num": "3", "name": "Rolex"},
+            {"num": "4", "name": "Purusti"},
+            {"num": "5", "name": "Ismail"},
+            {"num": "6", "name": "Karna"},
+            {"num": "7", "name": "Surendra"},
+            {"num": "8", "name": "Rihan"},
+            {"num": "9", "name": "Kapilash"},
+            {"num": "10", "name": "Arjun"},
+            {"num": "11", "name": "Ghenu"}
+        ]
+    },
+    {
+        "id": "abhay11",
+        "name": "Abhay11",
+        "captain": "Abhay",
+        "accent": "#4cc9f0",
+        "players": [
+            {"num": "A", "name": "Abhay (C)", "isCaptain": true},
+            {"num": "1", "name": "Sritam"},
+            {"num": "2", "name": "Abhinash"},
+            {"num": "3", "name": "Gunanidhi"},
+            {"num": "4", "name": "Shyam"},
+            {"num": "5", "name": "Munna"},
+            {"num": "6", "name": "Sushant"},
+            {"num": "7", "name": "Aju"},
+            {"num": "8", "name": "Pratap"},
+            {"num": "9", "name": "Ramesh"},
+            {"num": "10", "name": "Susanta"},
+            {"num": "11", "name": "Harish"}
+        ]
+    },
+    {
+        "id": "khagesh11",
+        "name": "Khagesh11",
+        "captain": "Khagesh",
+        "accent": "#f72585",
+        "players": [
+            {"num": "K", "name": "Khagesh (C)", "isCaptain": true},
+            {"num": "1", "name": "Pradeep"},
+            {"num": "2", "name": "Gideon"},
+            {"num": "3", "name": "Micheal"},
+            {"num": "4", "name": "Naba"},
+            {"num": "5", "name": "Salman"},
+            {"num": "6", "name": "Kiran"},
+            {"num": "7", "name": "Krushna AG"},
+            {"num": "8", "name": "Lipun"},
+            {"num": "9", "name": "Prashant"},
+            {"num": "10", "name": "Soumya"},
+            {"num": "11", "name": "Dhana/Manoj"}
+        ]
+    },
+    {
+        "id": "yash11",
+        "name": "Yash11",
+        "captain": "Yash",
+        "accent": "#7209b7",
+        "players": [
+            {"num": "Y", "name": "Yash (C)", "isCaptain": true},
+            {"num": "1", "name": "Janme"},
+            {"num": "2", "name": "Rabindra"},
+            {"num": "3", "name": "Micheal AG"},
+            {"num": "4", "name": "Mophin"},
+            {"num": "5", "name": "Bikram"},
+            {"num": "6", "name": "Purna"},
+            {"num": "7", "name": "Akshay"},
+            {"num": "8", "name": "Rohan"},
+            {"num": "9", "name": "Chuchu"},
+            {"num": "10", "name": "Rakesh"},
+            {"num": "11", "name": "Charan"}
+        ]
+    },
+    {
+        "id": "krish11",
+        "name": "Krish11",
+        "captain": "Krushna",
+        "accent": "#ffb703",
+        "players": [
+            {"num": "K", "name": "Krushna (C)", "isCaptain": true},
+            {"num": "1", "name": "Giri"},
+            {"num": "2", "name": "Surya"},
+            {"num": "3", "name": "Mantosh"},
+            {"num": "4", "name": "Tushar"},
+            {"num": "5", "name": "Rahul"},
+            {"num": "6", "name": "Bunny"},
+            {"num": "7", "name": "Naresh"},
+            {"num": "8", "name": "Tapan"},
+            {"num": "9", "name": "Laba"},
+            {"num": "10", "name": "Purushottam"},
+            {"num": "11", "name": "Chandan"},
+            {"num": "12", "name": "Sunil"}
+        ]
+    }
+]
