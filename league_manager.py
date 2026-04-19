@@ -216,6 +216,7 @@ def generate_top_scorers_html(scorers):
                     <tr>
                         <td class="pos">{current_rank}</td>
                         <td class="team-cell">{rank_icon}{s['name']}</td>
+                        <td class="stat" style="text-align: center;">{s['mp']}</td>
                         <td class="pts" style="text-align: center;">{s['goals']}</td>
                     </tr>"""
     
@@ -226,6 +227,7 @@ def generate_top_scorers_html(scorers):
                             <tr>
                                 <th class="pos">Rank</th>
                                 <th>Player</th>
+                                <th class="stat">MP</th>
                                 <th class="pts" style="text-align: center;">Goals</th>
                             </tr>
                         </thead>
