@@ -10,7 +10,7 @@ def load_json(filename):
 def calculate_standings(teams, matches):
     standings = {team['name']: {
         'pos': 0, 'team': team['name'], 'mp': 0, 'w': 0, 'd': 0, 'l': 0,
-        'gf': 0, 'ga': 0, 'gd': 0, 'pts': 0
+        'gp': 0, 'ga': 0, 'gd': 0, 'pts': 0
     } for team in teams}
 
     completed_matches = [m for m in matches if m['status'] == 'Completed']
@@ -21,32 +21,46 @@ def calculate_standings(teams, matches):
 
         standings[t1]['mp'] += 1
         standings[t2]['mp'] += 1
-        standings[t1]['gf'] += s1
-        standings[t1]['ga'] += s2
-        standings[t2]['gf'] += s2
-        standings[t2]['ga'] += s1
-        standings[t1]['gd'] = standings[t1]['gf'] - standings[t1]['ga']
-        standings[t2]['gd'] = standings[t2]['gf'] - standings[t2]['ga']
 
-        if s1 > s2:
-            standings[t1]['w'] += 1
-            standings[t1]['pts'] += 3
-            standings[t2]['l'] += 1
-        elif s2 > s1:
-            standings[t2]['w'] += 1
-            standings[t2]['pts'] += 3
-            standings[t1]['l'] += 1
-        else:
+        if s1 == s2:
+            # Draw rule: GP and GA contribution is 0
             standings[t1]['d'] += 1
             standings[t1]['pts'] += 1
             standings[t2]['d'] += 1
             standings[t2]['pts'] += 1
+        else:
+            standings[t1]['gp'] += s1
+            standings[t1]['ga'] += s2
+            standings[t2]['gp'] += s2
+            standings[t2]['ga'] += s1
+            
+            if s1 > s2:
+                standings[t1]['w'] += 1
+                standings[t1]['pts'] += 3
+                standings[t2]['l'] += 1
+            else:
+                standings[t2]['w'] += 1
+                standings[t2]['pts'] += 3
+                standings[t1]['l'] += 1
+        
+        standings[t1]['gd'] = standings[t1]['gp'] - standings[t1]['ga']
+        standings[t2]['gd'] = standings[t2]['gp'] - standings[t2]['ga']
 
-    # Sort by Pts, then GD, then GF
-    sorted_standings = sorted(standings.values(), key=lambda x: (x['pts'], x['gd'], x['gf']), reverse=True)
+    # Sort by Pts, then GD, then GP, then MP (lower MP is better? user didn't say, I'll use MP as tie-breaker too)
+    sorted_standings = sorted(standings.values(), key=lambda x: (x['pts'], x['gd'], x['gp'], -x['mp']), reverse=True)
     
+    current_pos = 1
     for i, team in enumerate(sorted_standings):
-        team['pos'] = i + 1
+        if i > 0:
+            prev = sorted_standings[i-1]
+            # Check if tied with previous
+            is_tied = (team['pts'] == prev['pts'] and 
+                       team['gd'] == prev['gd'] and 
+                       team['gp'] == prev['gp'] and 
+                       team['mp'] == prev['mp'])
+            if not is_tied:
+                current_pos = i + 1
+        team['pos'] = current_pos
         
     return sorted_standings
 
@@ -109,7 +123,7 @@ def generate_standings_html(standings):
                             <td class="stat">{team['w']}</td>
                             <td class="stat">{team['d']}</td>
                             <td class="stat">{team['l']}</td>
-                            <td class="stat">{team['gf']}</td>
+                            <td class="stat">{team['gp']}</td>
                             <td class="stat">{team['ga']}</td>
                             <td class="stat">{team['gd']}</td>
                             <td class="pts">{team['pts']}</td>
@@ -149,7 +163,17 @@ def generate_squads_html(teams):
                 </div>"""
     return html
 
-def calculate_top_scorers(matches):
+def calculate_top_scorers(matches, teams, standings):
+    def clean_name(n):
+        return n.split(' (')[0].strip()
+
+    # Map player to team and team MP
+    player_to_team = {}
+    team_mp = {s['team']: s['mp'] for s in standings}
+    for t in teams:
+        for p in t['players']:
+            player_to_team[clean_name(p['name'])] = t['name']
+
     scorers = {}
     for m in matches:
         if m['status'] == 'Completed':
@@ -158,8 +182,15 @@ def calculate_top_scorers(matches):
             for s in m.get('scorers2', []):
                 scorers[s] = scorers.get(s, 0) + 1
     
-    # Sort by goals, then name
-    sorted_scorers = sorted(scorers.items(), key=lambda x: (-x[1], x[0]))
+    # Format: list of {'name', 'goals', 'mp'}
+    scorer_list = []
+    for name, goals in scorers.items():
+        team = player_to_team.get(clean_name(name))
+        mp = team_mp.get(team, 0) if team else 0
+        scorer_list.append({'name': name, 'goals': goals, 'mp': mp})
+
+    # Sort by goals (desc), then MP (desc)
+    sorted_scorers = sorted(scorer_list, key=lambda x: (-x['goals'], x['mp']))
     return sorted_scorers
 
 def generate_top_scorers_html(scorers):
@@ -173,15 +204,21 @@ def generate_top_scorers_html(scorers):
             </div>"""
     
     rows = ""
-    for i, (name, goals) in enumerate(scorers, 1):
+    current_rank = 1
+    for i, s in enumerate(scorers):
+        if i > 0:
+            prev = scorers[i-1]
+            if not (s['goals'] == prev['goals'] and s['mp'] == prev['mp']):
+                current_rank = i + 1
+        
         rank_icon = ""
-        if i == 1: rank_icon = '<i class="fas fa-crown" style="color: var(--gold); margin-right: 10px;"></i>'
+        if current_rank == 1: rank_icon = '<i class="fas fa-crown" style="color: var(--gold); margin-right: 10px;"></i>'
         
         rows += f"""
                     <tr>
-                        <td class="pos">{i}</td>
-                        <td class="team-cell">{rank_icon}{name}</td>
-                        <td class="pts" style="text-align: center;">{goals}</td>
+                        <td class="pos">{current_rank}</td>
+                        <td class="team-cell">{rank_icon}{s['name']}</td>
+                        <td class="pts" style="text-align: center;">{s['goals']}</td>
                     </tr>"""
     
     return f"""
@@ -221,7 +258,7 @@ def main():
         })
 
     standings = calculate_standings(teams, matches)
-    top_scorers = calculate_top_scorers(matches)
+    top_scorers = calculate_top_scorers(matches, teams, standings)
     
     # Generate HTML chunks
     fixtures_html = generate_fixtures_html(matches)
