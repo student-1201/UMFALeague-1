@@ -931,7 +931,7 @@
         <div class="container tracker-container">
             <div class="progress-header">
                 <div class="progress-status">Tournament Tracker</div>
-                <div class="progress-matches">0 / 10 Group Matches Completed</div>
+                <div class="progress-matches">1 / 10 Group Matches Completed</div>
             </div>
             <div class="progress-bar-bg">
                 <div class="progress-bar-fill" id="progress-bar"></div>
@@ -971,14 +971,14 @@
                     <div class="fixture-main">
                         <div class="match-teams">
                             <div class="team-side"><div class="team-name">Malay11</div></div>
-                            <div class="vs-box">VS</div>
+                            <div class="vs-box">0 - 0</div>
                             <div class="team-side"><div class="team-name">Yash11</div></div>
                         </div>
                     </div>
                     <div class="fixture-footer">
                         <div class="match-meta">
                             <span><i class="fas fa-trophy"></i> League Match</span>
-                            <span><i class="fas fa-circle-info"></i> Upcoming</span>
+                            <span><i class="fas fa-circle-info"></i> Completed</span>
                         </div>
                     </div>
                     
@@ -1232,30 +1232,30 @@
                         <tr class="zone-final">
                             <td class="pos">1</td>
                             <td class="team-cell">Malay11</td>
+                            <td class="stat">1</td>
+                            <td class="stat">0</td>
+                            <td class="stat">1</td>
                             <td class="stat">0</td>
                             <td class="stat">0</td>
                             <td class="stat">0</td>
                             <td class="stat">0</td>
-                            <td class="stat">0</td>
-                            <td class="stat">0</td>
-                            <td class="stat">0</td>
-                            <td class="pts">0</td>
+                            <td class="pts">1</td>
                         </tr>
                         <tr class="zone-sf">
                             <td class="pos">2</td>
-                            <td class="team-cell">Abhay11</td>
+                            <td class="team-cell">Yash11</td>
+                            <td class="stat">1</td>
+                            <td class="stat">0</td>
+                            <td class="stat">1</td>
                             <td class="stat">0</td>
                             <td class="stat">0</td>
                             <td class="stat">0</td>
                             <td class="stat">0</td>
-                            <td class="stat">0</td>
-                            <td class="stat">0</td>
-                            <td class="stat">0</td>
-                            <td class="pts">0</td>
+                            <td class="pts">1</td>
                         </tr>
                         <tr class="zone-sf">
                             <td class="pos">3</td>
-                            <td class="team-cell">Khagesh11</td>
+                            <td class="team-cell">Abhay11</td>
                             <td class="stat">0</td>
                             <td class="stat">0</td>
                             <td class="stat">0</td>
@@ -1267,7 +1267,7 @@
                         </tr>
                         <tr class="">
                             <td class="pos">4</td>
-                            <td class="team-cell">Yash11</td>
+                            <td class="team-cell">Khagesh11</td>
                             <td class="stat">0</td>
                             <td class="stat">0</td>
                             <td class="stat">0</td>
@@ -1541,7 +1541,7 @@
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const bar = document.getElementById('progress-bar');
-                bar.style.width = '0.0%';
+                bar.style.width = '10.0%';
             }, 500);
         });
 
