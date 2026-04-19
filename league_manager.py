@@ -124,8 +124,6 @@ def generate_standings_html(standings):
                             <td class="stat">{team['d']}</td>
                             <td class="stat">{team['l']}</td>
                             <td class="stat">{team['gp']}</td>
-                            <td class="stat">{team['ga']}</td>
-                            <td class="stat">{team['gd']}</td>
                             <td class="pts">{team['pts']}</td>
                         </tr>"""
     return html
