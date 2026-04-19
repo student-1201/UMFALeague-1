@@ -436,6 +436,16 @@
             color: #fff;
             text-transform: uppercase;
             white-space: nowrap;
+            line-height: 1.1;
+        }
+
+        .goal-scorers {
+            font-family: var(--accent-font);
+            font-size: 0.8rem;
+            color: var(--electric-green);
+            font-weight: 500;
+            margin-top: 4px;
+            opacity: 0.9;
         }
 
         .vs-box {
@@ -1002,12 +1012,9 @@
     <!-- TOP SCORERS -->
     <section id="scorers">
         <div class="container">
-            <h2 class="section-title">Goal Kings</h2>
-            <div class="empty-state reveal">
-                <i class="fas fa-futbol fa-bounce"></i>
-                <h3>No goals scored yet</h3>
-                <p>The leaderboard will light up once the first whistle blows. Check back after Match 1!</p>
-                <button class="btn-expand" disabled>Show All Scorers</button>
+            <h2 class="section-title">Top Scorers</h2>
+            <div id="scorers-container">
+                {{TOP_SCORERS}}
             </div>
         </div>
     </section>

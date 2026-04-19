@@ -60,6 +60,9 @@ def generate_fixtures_html(matches):
         elif m['status'] == "Awaiting":
              locked_overlay = '<div class="locked-overlay"><i class="fas fa-lock"></i><span>Awaiting Results</span></div>'
 
+        scorers_html1 = f'<div class="goal-scorers">{", ".join(m.get("scorers1", []))}</div>' if m.get("scorers1") else ""
+        scorers_html2 = f'<div class="goal-scorers">{", ".join(m.get("scorers2", []))}</div>' if m.get("scorers2") else ""
+
         html += f"""
                 <div class="fixture-card reveal {status_class}">
                     <div class="fixture-header">
@@ -68,9 +71,15 @@ def generate_fixtures_html(matches):
                     </div>
                     <div class="fixture-main">
                         <div class="match-teams">
-                            <div class="team-side"><div class="team-name">{m['team1']}</div></div>
+                            <div class="team-side">
+                                <div class="team-name">{m['team1']}</div>
+                                {scorers_html1}
+                            </div>
                             <div class="vs-box">{"VS" if m['status'] != 'Completed' else f"{m['score1']} - {m['score2']}"}</div>
-                            <div class="team-side"><div class="team-name">{m['team2']}</div></div>
+                            <div class="team-side">
+                                <div class="team-name">{m['team2']}</div>
+                                {scorers_html2}
+                            </div>
                         </div>
                     </div>
                     <div class="fixture-footer">
@@ -138,6 +147,56 @@ def generate_squads_html(teams):
                 </div>"""
     return html
 
+def calculate_top_scorers(matches):
+    scorers = {}
+    for m in matches:
+        if m['status'] == 'Completed':
+            for s in m.get('scorers1', []):
+                scorers[s] = scorers.get(s, 0) + 1
+            for s in m.get('scorers2', []):
+                scorers[s] = scorers.get(s, 0) + 1
+    
+    # Sort by goals, then name
+    sorted_scorers = sorted(scorers.items(), key=lambda x: (-x[1], x[0]))
+    return sorted_scorers
+
+def generate_top_scorers_html(scorers):
+    if not scorers:
+        return """
+            <div class="empty-state reveal">
+                <i class="fas fa-futbol fa-bounce"></i>
+                <h3>No goals scored yet</h3>
+                <p>The leaderboard will light up once the first whistle blows. Check back after Match 1!</p>
+                <button class="btn-expand" disabled>Show All Scorers</button>
+            </div>"""
+    
+    rows = ""
+    for i, (name, goals) in enumerate(scorers, 1):
+        rank_icon = ""
+        if i == 1: rank_icon = '<i class="fas fa-crown" style="color: var(--gold); margin-right: 10px;"></i>'
+        
+        rows += f"""
+                    <tr>
+                        <td class="pos">{i}</td>
+                        <td class="team-cell">{rank_icon}{name}</td>
+                        <td class="pts" style="text-align: center;">{goals}</td>
+                    </tr>"""
+    
+    return f"""
+                <div class="table-responsive reveal">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="pos">Rank</th>
+                                <th>Player</th>
+                                <th class="pts" style="text-align: center;">Goals</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {rows}
+                        </tbody>
+                    </table>
+                </div>"""
 def main():
     teams = load_json('teams.json')
     matches = load_json('matches.json')
@@ -160,11 +219,13 @@ def main():
         })
 
     standings = calculate_standings(teams, matches)
+    top_scorers = calculate_top_scorers(matches)
     
     # Generate HTML chunks
     fixtures_html = generate_fixtures_html(matches)
     standings_html = generate_standings_html(standings)
     squads_html = generate_squads_html(teams)
+    scorers_html = generate_top_scorers_html(top_scorers)
     
     completed_count = len([m for m in matches if m['status'] == 'Completed' and m['stage'] == 'League Match'])
     progress_percent = (completed_count / 10) * 100
@@ -181,6 +242,7 @@ def main():
     output = template.replace('{{FIXTURES}}', fixtures_html)
     output = output.replace('{{STANDINGS}}', standings_html)
     output = output.replace('{{SQUADS}}', squads_html)
+    output = output.replace('{{TOP_SCORERS}}', scorers_html)
     output = output.replace('{{COMPLETED_MATCHES}}', str(completed_count))
     output = output.replace('{{PROGRESS_PERCENT}}', str(progress_percent))
 

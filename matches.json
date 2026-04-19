@@ -18,9 +18,11 @@
         "session": "Evening",
         "team1": "Abhay11",
         "team2": "Khagesh11",
-        "score1": 0,
-        "score2": 0,
-        "status": "Upcoming",
+        "score1": 1,
+        "score2": 1,
+        "scorers1": ["Shyam"],
+        "scorers2": ["Khagesh"],
+        "status": "Completed",
         "stage": "League Match"
     },
     {
