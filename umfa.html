@@ -17,6 +17,7 @@
             --navy-deep: #0a111a;
             --navy-card: rgba(16, 26, 40, 0.7);
             --electric-green: #39FF14;
+            --blue: #00d2ff;
             --gold: #FFD700;
             --gold-muted: #b8860b;
             --silver: #C0C0C0;
@@ -475,6 +476,16 @@
             display: flex;
             justify-content: center;
             gap: 15px;
+        }
+
+        .status-completed {
+            color: var(--blue) !important;
+            font-weight: 600;
+        }
+
+        .status-upcoming {
+            color: var(--silver) !important;
+            font-weight: 600;
         }
 
         .fixture-card.locked {
@@ -994,7 +1005,7 @@
                     <div class="fixture-footer">
                         <div class="match-meta">
                             <span><i class="fas fa-trophy"></i> League Match</span>
-                            <span><i class="fas fa-circle-info"></i> Completed</span>
+                            <span class="status-completed"><i class="fas fa-circle-info"></i> Completed</span>
                         </div>
                     </div>
                     
@@ -1020,7 +1031,7 @@
                     <div class="fixture-footer">
                         <div class="match-meta">
                             <span><i class="fas fa-trophy"></i> League Match</span>
-                            <span><i class="fas fa-circle-info"></i> Completed</span>
+                            <span class="status-completed"><i class="fas fa-circle-info"></i> Completed</span>
                         </div>
                     </div>
                     
@@ -1046,7 +1057,7 @@
                     <div class="fixture-footer">
                         <div class="match-meta">
                             <span><i class="fas fa-trophy"></i> League Match</span>
-                            <span><i class="fas fa-circle-info"></i> Upcoming</span>
+                            <span class="status-upcoming"><i class="fas fa-circle-info"></i> Upcoming</span>
                         </div>
                     </div>
                     
@@ -1072,7 +1083,7 @@
                     <div class="fixture-footer">
                         <div class="match-meta">
                             <span><i class="fas fa-trophy"></i> League Match</span>
-                            <span><i class="fas fa-circle-info"></i> Upcoming</span>
+                            <span class="status-upcoming"><i class="fas fa-circle-info"></i> Upcoming</span>
                         </div>
                     </div>
                     
@@ -1098,7 +1109,7 @@
                     <div class="fixture-footer">
                         <div class="match-meta">
                             <span><i class="fas fa-trophy"></i> League Match</span>
-                            <span><i class="fas fa-circle-info"></i> Upcoming</span>
+                            <span class="status-upcoming"><i class="fas fa-circle-info"></i> Upcoming</span>
                         </div>
                     </div>
                     
@@ -1124,7 +1135,7 @@
                     <div class="fixture-footer">
                         <div class="match-meta">
                             <span><i class="fas fa-trophy"></i> League Match</span>
-                            <span><i class="fas fa-circle-info"></i> Upcoming</span>
+                            <span class="status-upcoming"><i class="fas fa-circle-info"></i> Upcoming</span>
                         </div>
                     </div>
                     
@@ -1150,7 +1161,7 @@
                     <div class="fixture-footer">
                         <div class="match-meta">
                             <span><i class="fas fa-trophy"></i> League Match</span>
-                            <span><i class="fas fa-circle-info"></i> Upcoming</span>
+                            <span class="status-upcoming"><i class="fas fa-circle-info"></i> Upcoming</span>
                         </div>
                     </div>
                     
@@ -1176,7 +1187,7 @@
                     <div class="fixture-footer">
                         <div class="match-meta">
                             <span><i class="fas fa-trophy"></i> League Match</span>
-                            <span><i class="fas fa-circle-info"></i> Upcoming</span>
+                            <span class="status-upcoming"><i class="fas fa-circle-info"></i> Upcoming</span>
                         </div>
                     </div>
                     
@@ -1202,7 +1213,7 @@
                     <div class="fixture-footer">
                         <div class="match-meta">
                             <span><i class="fas fa-trophy"></i> League Match</span>
-                            <span><i class="fas fa-circle-info"></i> Upcoming</span>
+                            <span class="status-upcoming"><i class="fas fa-circle-info"></i> Upcoming</span>
                         </div>
                     </div>
                     
@@ -1228,7 +1239,7 @@
                     <div class="fixture-footer">
                         <div class="match-meta">
                             <span><i class="fas fa-trophy"></i> League Match</span>
-                            <span><i class="fas fa-circle-info"></i> Upcoming</span>
+                            <span class="status-upcoming"><i class="fas fa-circle-info"></i> Upcoming</span>
                         </div>
                     </div>
                     
@@ -1254,7 +1265,7 @@
                     <div class="fixture-footer">
                         <div class="match-meta">
                             <span><i class="fas fa-trophy"></i> Semifinal</span>
-                            <span><i class="fas fa-circle-info"></i> Locked</span>
+                            <span class="status-locked"><i class="fas fa-circle-info"></i> Locked</span>
                         </div>
                     </div>
                     <div class="locked-overlay"><i class="fas fa-lock"></i><span>Locked</span></div>
@@ -1280,7 +1291,7 @@
                     <div class="fixture-footer">
                         <div class="match-meta">
                             <span><i class="fas fa-trophy"></i> Grand Final</span>
-                            <span><i class="fas fa-circle-info"></i> Locked</span>
+                            <span class="status-locked"><i class="fas fa-circle-info"></i> Locked</span>
                         </div>
                     </div>
                     <div class="locked-overlay"><i class="fas fa-lock"></i><span>Locked</span></div>

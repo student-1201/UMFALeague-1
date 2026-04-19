@@ -63,6 +63,8 @@ def generate_fixtures_html(matches):
         scorers_html1 = f'<div class="goal-scorers">{", ".join(m.get("scorers1", []))}</div>' if m.get("scorers1") else ""
         scorers_html2 = f'<div class="goal-scorers">{", ".join(m.get("scorers2", []))}</div>' if m.get("scorers2") else ""
 
+        status_label_class = f"status-{m['status'].lower()}"
+
         html += f"""
                 <div class="fixture-card reveal {status_class}">
                     <div class="fixture-header">
@@ -85,7 +87,7 @@ def generate_fixtures_html(matches):
                     <div class="fixture-footer">
                         <div class="match-meta">
                             <span><i class="fas fa-trophy"></i> {m['stage']}</span>
-                            <span><i class="fas fa-circle-info"></i> {m['status']}</span>
+                            <span class="{status_label_class}"><i class="fas fa-circle-info"></i> {m['status']}</span>
                         </div>
                     </div>
                     {locked_overlay}
