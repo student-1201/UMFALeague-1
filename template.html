@@ -446,9 +446,16 @@
             color: rgba(255, 255, 255, 0.8);
         }
 
-        .fixture-card.stage-semifinal .team-name {
+        .fixture-card.stage-semifinal .team-name,
+        .fixture-card.stage-semifinal .fixture-date {
             color: #fff;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 0 10px rgba(139, 69, 19, 0.5);
+        }
+
+        .fixture-card.stage-semifinal .fixture-date {
+            color: #fff !important;
+            border-bottom: 1px solid #8b4513;
+            display: inline-block;
         }
 
         .fixture-card.stage-final {
@@ -471,6 +478,12 @@
         .fixture-card.stage-final .status-upcoming {
             color: #000 !important;
             font-weight: 800;
+        }
+
+        .fixture-card.stage-final .fixture-date {
+            text-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+            border-bottom: 2px solid rgba(245, 158, 11, 0.3);
+            display: inline-block;
         }
 
         .fixture-card.stage-final .vs-box {
