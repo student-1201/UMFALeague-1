@@ -952,7 +952,7 @@
         <div class="container tracker-container">
             <div class="progress-header">
                 <div class="progress-status">Tournament Tracker</div>
-                <div class="progress-matches">2 / 10 Group Matches Completed</div>
+                <div class="progress-matches">3 / 10 Group Matches Completed</div>
             </div>
             <div class="progress-bar-bg">
                 <div class="progress-bar-fill" id="progress-bar"></div>
@@ -1045,19 +1045,19 @@
                         <div class="match-teams">
                             <div class="team-side">
                                 <div class="team-name">Khagesh11</div>
-                                
+                                <div class="goal-scorers">Pradeep, Pradeep</div>
                             </div>
-                            <div class="vs-box">VS</div>
+                            <div class="vs-box">2 - 2</div>
                             <div class="team-side">
                                 <div class="team-name">Yash11</div>
-                                
+                                <div class="goal-scorers">Rabindra, Charan</div>
                             </div>
                         </div>
                     </div>
                     <div class="fixture-footer">
                         <div class="match-meta">
                             <span><i class="fas fa-trophy"></i> League Match</span>
-                            <span class="status-upcoming"><i class="fas fa-circle-info"></i> Upcoming</span>
+                            <span class="status-completed"><i class="fas fa-circle-info"></i> Completed</span>
                         </div>
                     </div>
                     
@@ -1322,6 +1322,26 @@
                         
                         <tr class="zone-final">
                             <td class="pos">1</td>
+                            <td class="team-cell">Khagesh11</td>
+                            <td class="stat">2</td>
+                            <td class="stat">0</td>
+                            <td class="stat">2</td>
+                            <td class="stat">0</td>
+                            <td class="stat">0</td>
+                            <td class="pts">2</td>
+                        </tr>
+                        <tr class="zone-final">
+                            <td class="pos">1</td>
+                            <td class="team-cell">Yash11</td>
+                            <td class="stat">2</td>
+                            <td class="stat">0</td>
+                            <td class="stat">2</td>
+                            <td class="stat">0</td>
+                            <td class="stat">0</td>
+                            <td class="pts">2</td>
+                        </tr>
+                        <tr class="zone-sf">
+                            <td class="pos">3</td>
                             <td class="team-cell">Malay11</td>
                             <td class="stat">1</td>
                             <td class="stat">0</td>
@@ -1330,29 +1350,9 @@
                             <td class="stat">0</td>
                             <td class="pts">1</td>
                         </tr>
-                        <tr class="zone-final">
-                            <td class="pos">1</td>
+                        <tr class="zone-sf">
+                            <td class="pos">3</td>
                             <td class="team-cell">Abhay11</td>
-                            <td class="stat">1</td>
-                            <td class="stat">0</td>
-                            <td class="stat">1</td>
-                            <td class="stat">0</td>
-                            <td class="stat">0</td>
-                            <td class="pts">1</td>
-                        </tr>
-                        <tr class="zone-final">
-                            <td class="pos">1</td>
-                            <td class="team-cell">Khagesh11</td>
-                            <td class="stat">1</td>
-                            <td class="stat">0</td>
-                            <td class="stat">1</td>
-                            <td class="stat">0</td>
-                            <td class="stat">0</td>
-                            <td class="pts">1</td>
-                        </tr>
-                        <tr class="zone-final">
-                            <td class="pos">1</td>
-                            <td class="team-cell">Yash11</td>
                             <td class="stat">1</td>
                             <td class="stat">0</td>
                             <td class="stat">1</td>
@@ -1400,14 +1400,32 @@
                             
                     <tr>
                         <td class="pos">1</td>
-                        <td class="team-cell"><i class="fas fa-crown" style="color: var(--gold); margin-right: 10px;"></i>Shyam</td>
+                        <td class="team-cell"><i class="fas fa-crown" style="color: var(--gold); margin-right: 10px;"></i>Pradeep</td>
+                        <td class="stat" style="text-align: center;">2</td>
+                        <td class="pts" style="text-align: center;">2</td>
+                    </tr>
+                    <tr>
+                        <td class="pos">2</td>
+                        <td class="team-cell">Shyam</td>
                         <td class="stat" style="text-align: center;">1</td>
                         <td class="pts" style="text-align: center;">1</td>
                     </tr>
                     <tr>
-                        <td class="pos">1</td>
-                        <td class="team-cell"><i class="fas fa-crown" style="color: var(--gold); margin-right: 10px;"></i>Khagesh</td>
-                        <td class="stat" style="text-align: center;">1</td>
+                        <td class="pos">3</td>
+                        <td class="team-cell">Khagesh</td>
+                        <td class="stat" style="text-align: center;">2</td>
+                        <td class="pts" style="text-align: center;">1</td>
+                    </tr>
+                    <tr>
+                        <td class="pos">3</td>
+                        <td class="team-cell">Rabindra</td>
+                        <td class="stat" style="text-align: center;">2</td>
+                        <td class="pts" style="text-align: center;">1</td>
+                    </tr>
+                    <tr>
+                        <td class="pos">3</td>
+                        <td class="team-cell">Charan</td>
+                        <td class="stat" style="text-align: center;">2</td>
                         <td class="pts" style="text-align: center;">1</td>
                     </tr>
                         </tbody>
@@ -1646,7 +1664,7 @@
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const bar = document.getElementById('progress-bar');
-                bar.style.width = '20.0%';
+                bar.style.width = '30.0%';
             }, 500);
         });
 
