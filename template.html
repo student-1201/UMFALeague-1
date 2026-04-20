@@ -380,10 +380,18 @@
         .fixture-card {
             background: var(--navy-card);
             border: 1px solid var(--glass-border);
-            border-radius: 12px;
+            border-radius: 20px;
             overflow: hidden;
-            transition: var(--transition-smooth);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
+        }
+
+        .fixture-card.completed {
+            border: 1px solid var(--blue);
+        }
+
+        .fixture-card.upcoming {
+            border: 1px solid var(--silver);
         }
 
         .fixture-card:hover {

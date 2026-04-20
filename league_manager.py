@@ -74,8 +74,18 @@ def generate_fixtures_html(matches):
         elif m['status'] == "Awaiting":
              locked_overlay = '<div class="locked-overlay"><i class="fas fa-lock"></i><span>Awaiting Results</span></div>'
 
-        scorers_html1 = f'<div class="goal-scorers">{", ".join(m.get("scorers1", []))}</div>' if m.get("scorers1") else ""
-        scorers_html2 = f'<div class="goal-scorers">{", ".join(m.get("scorers2", []))}</div>' if m.get("scorers2") else ""
+        def format_scorers_ui(s_list):
+            if not s_list: return ""
+            counts = {}
+            for s in s_list:
+                counts[s] = counts.get(s, 0) + 1
+            parts = []
+            for name, count in counts.items():
+                parts.append(f"{name}({count})" if count > 1 else name)
+            return ", ".join(parts)
+
+        scorers_html1 = f'<div class="goal-scorers">{format_scorers_ui(m.get("scorers1", []))}</div>' if m.get("scorers1") else ""
+        scorers_html2 = f'<div class="goal-scorers">{format_scorers_ui(m.get("scorers2", []))}</div>' if m.get("scorers2") else ""
 
         status_label_class = f"status-{m['status'].lower()}"
 
