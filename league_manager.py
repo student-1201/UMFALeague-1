@@ -64,25 +64,25 @@ def calculate_standings(teams, matches):
         
     return sorted_standings
 
+def format_scorers_ui(s_list):
+    if not s_list: return ""
+    counts = {}
+    for s in s_list:
+        counts[s] = counts.get(s, 0) + 1
+    parts = []
+    for name, count in counts.items():
+        parts.append(f"{name}({count})" if count > 1 else name)
+    return ", ".join(parts)
+
 def generate_fixtures_html(matches):
     html = ""
     for m in matches:
-        status_class = "locked" if m['status'] == "Locked" else ""
+        status_class = m['status'].lower()
         locked_overlay = ""
         if m['status'] == "Locked":
             locked_overlay = '<div class="locked-overlay"><i class="fas fa-lock"></i><span>Locked</span></div>'
         elif m['status'] == "Awaiting":
              locked_overlay = '<div class="locked-overlay"><i class="fas fa-lock"></i><span>Awaiting Results</span></div>'
-
-        def format_scorers_ui(s_list):
-            if not s_list: return ""
-            counts = {}
-            for s in s_list:
-                counts[s] = counts.get(s, 0) + 1
-            parts = []
-            for name, count in counts.items():
-                parts.append(f"{name}({count})" if count > 1 else name)
-            return ", ".join(parts)
 
         scorers_html1 = f'<div class="goal-scorers">{format_scorers_ui(m.get("scorers1", []))}</div>' if m.get("scorers1") else ""
         scorers_html2 = f'<div class="goal-scorers">{format_scorers_ui(m.get("scorers2", []))}</div>' if m.get("scorers2") else ""
@@ -276,6 +276,20 @@ def main():
     squads_html = generate_squads_html(teams)
     scorers_html = generate_top_scorers_html(top_scorers)
     
+    # Generate Highlights Ticker
+    latest_completed = [m for m in matches if m['status'] == 'Completed']
+    highlights_text = "UMFA LEAGUE - 1 CHAMPIONSHIP 2026 | "
+    if latest_completed:
+        latest = max(latest_completed, key=lambda x: str(x['id']))
+        scorers_info = f" | SCORERS: {latest['team1']} - {format_scorers_ui(latest.get('scorers1', []))} | {latest['team2']} - {format_scorers_ui(latest.get('scorers2', []))}"
+        highlights_text += f"LATEST RESULT: MATCH {latest['id']} - {latest['team1']} {latest['score1']} - {latest['score2']} {latest['team2']}{scorers_info} | "
+    
+    next_match = next((m for m in matches if m['status'] == 'Upcoming'), None)
+    if next_match:
+        highlights_text += f"NEXT UP: {next_match['team1']} VS {next_match['team2']} ({next_match['date']} {next_match['time']}) | "
+    
+    highlights_text += "MITS COLLEGE PLAYGROUND | DESIGNED FOR CHAMPIONS"
+
     completed_count = len([m for m in matches if m['status'] == 'Completed' and m['stage'] == 'League Match'])
     progress_percent = (completed_count / 10) * 100
 
@@ -292,6 +306,7 @@ def main():
     output = output.replace('{{STANDINGS}}', standings_html)
     output = output.replace('{{SQUADS}}', squads_html)
     output = output.replace('{{TOP_SCORERS}}', scorers_html)
+    output = output.replace('{{HIGHLIGHTS}}', highlights_text)
     output = output.replace('{{COMPLETED_MATCHES}}', str(completed_count))
     output = output.replace('{{PROGRESS_PERCENT}}', str(progress_percent))
 
