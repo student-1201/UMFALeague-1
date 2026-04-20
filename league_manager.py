@@ -88,9 +88,10 @@ def generate_fixtures_html(matches):
         scorers_html2 = f'<div class="goal-scorers">{format_scorers_ui(m.get("scorers2", []))}</div>' if m.get("scorers2") else ""
 
         status_label_class = f"status-{m['status'].lower()}"
+        stage_class = f"stage-{m['stage'].lower().replace(' ', '-')}"
 
         html += f"""
-                <div class="fixture-card reveal {status_class}">
+                <div class="fixture-card reveal {status_class} {stage_class}">
                     <div class="fixture-header">
                         <span class="fixture-date">{m['date']}</span>
                         <span>{m['time']} ({m['session']})</span>

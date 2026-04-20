@@ -434,6 +434,48 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
         }
 
+        /* Knockout Stage Custom Themes */
+        .fixture-card.stage-semifinal {
+            background: linear-gradient(135deg, #a85d24, #78350f, #a85d24) !important;
+            border: 2px solid #b45309 !important;
+        }
+
+        .fixture-card.stage-semifinal .fixture-header,
+        .fixture-card.stage-semifinal .fixture-footer {
+            background: rgba(0, 0, 0, 0.4);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .fixture-card.stage-semifinal .team-name {
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .fixture-card.stage-final {
+            background: linear-gradient(135deg, #f59e0b, #fef3c7, #94a3b8, #fef3c7, #f59e0b) !important;
+            border: 3px solid #f59e0b !important;
+            box-shadow: 0 10px 40px rgba(245, 158, 11, 0.3) !important;
+        }
+
+        .fixture-card.stage-final .fixture-header,
+        .fixture-card.stage-final .fixture-footer {
+            background: rgba(0, 0, 0, 0.15);
+            color: #000;
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .fixture-card.stage-final .team-name,
+        .fixture-card.stage-final .fixture-date,
+        .fixture-card.stage-final .vs-box,
+        .fixture-card.stage-final .goal-scorers {
+            color: #000 !important;
+            font-weight: 800;
+        }
+        
+        .fixture-card community-card {
+            background: var(--navy-card);
+        }
+
         .fixture-header {
             background: rgba(0, 0, 0, 0.3);
             padding: 10px 15px;
@@ -1033,7 +1075,7 @@
             <h2 class="section-title">Fixture Schedule</h2>
             <div class="fixtures-grid">
                 
-                <div class="fixture-card reveal completed">
+                <div class="fixture-card reveal completed stage-league-match">
                     <div class="fixture-header">
                         <span class="fixture-date">Sun Apr 19</span>
                         <span>06:30 AM (Morning)</span>
@@ -1059,7 +1101,7 @@
                     </div>
                     
                 </div>
-                <div class="fixture-card reveal completed">
+                <div class="fixture-card reveal completed stage-league-match">
                     <div class="fixture-header">
                         <span class="fixture-date">Sun Apr 19</span>
                         <span>04:00 PM (Evening)</span>
@@ -1085,7 +1127,7 @@
                     </div>
                     
                 </div>
-                <div class="fixture-card reveal completed">
+                <div class="fixture-card reveal completed stage-league-match">
                     <div class="fixture-header">
                         <span class="fixture-date">Mon Apr 20</span>
                         <span>06:30 AM (Morning)</span>
@@ -1111,7 +1153,7 @@
                     </div>
                     
                 </div>
-                <div class="fixture-card reveal completed">
+                <div class="fixture-card reveal completed stage-league-match">
                     <div class="fixture-header">
                         <span class="fixture-date">Mon Apr 20</span>
                         <span>04:00 PM (Evening)</span>
@@ -1137,7 +1179,7 @@
                     </div>
                     
                 </div>
-                <div class="fixture-card reveal upcoming">
+                <div class="fixture-card reveal upcoming stage-league-match">
                     <div class="fixture-header">
                         <span class="fixture-date">Tue Apr 21</span>
                         <span>06:30 AM (Morning)</span>
@@ -1163,7 +1205,7 @@
                     </div>
                     
                 </div>
-                <div class="fixture-card reveal upcoming">
+                <div class="fixture-card reveal upcoming stage-league-match">
                     <div class="fixture-header">
                         <span class="fixture-date">Tue Apr 21</span>
                         <span>04:00 PM (Evening)</span>
@@ -1189,7 +1231,7 @@
                     </div>
                     
                 </div>
-                <div class="fixture-card reveal upcoming">
+                <div class="fixture-card reveal upcoming stage-league-match">
                     <div class="fixture-header">
                         <span class="fixture-date">Wed Apr 22</span>
                         <span>06:30 AM (Morning)</span>
@@ -1215,7 +1257,7 @@
                     </div>
                     
                 </div>
-                <div class="fixture-card reveal upcoming">
+                <div class="fixture-card reveal upcoming stage-league-match">
                     <div class="fixture-header">
                         <span class="fixture-date">Wed Apr 22</span>
                         <span>04:00 PM (Evening)</span>
@@ -1241,7 +1283,7 @@
                     </div>
                     
                 </div>
-                <div class="fixture-card reveal upcoming">
+                <div class="fixture-card reveal upcoming stage-league-match">
                     <div class="fixture-header">
                         <span class="fixture-date">Thu Apr 23</span>
                         <span>06:30 AM (Morning)</span>
@@ -1267,7 +1309,7 @@
                     </div>
                     
                 </div>
-                <div class="fixture-card reveal upcoming">
+                <div class="fixture-card reveal upcoming stage-league-match">
                     <div class="fixture-header">
                         <span class="fixture-date">Thu Apr 23</span>
                         <span>04:00 PM (Evening)</span>
@@ -1293,20 +1335,20 @@
                     </div>
                     
                 </div>
-                <div class="fixture-card reveal locked">
+                <div class="fixture-card reveal upcoming stage-semifinal">
                     <div class="fixture-header">
-                        <span class="fixture-date">TBD</span>
-                        <span>TBD (TBD)</span>
+                        <span class="fixture-date">Fri Apr 24</span>
+                        <span>06:30 AM (Morning)</span>
                     </div>
                     <div class="fixture-main">
                         <div class="match-teams">
                             <div class="team-side">
-                                <div class="team-name">2nd Place</div>
+                                <div class="team-name">TBD</div>
                                 
                             </div>
                             <div class="vs-box">VS</div>
                             <div class="team-side">
-                                <div class="team-name">3rd Place</div>
+                                <div class="team-name">TBD</div>
                                 
                             </div>
                         </div>
@@ -1314,32 +1356,58 @@
                     <div class="fixture-footer">
                         <div class="match-meta">
                             <span><i class="fas fa-trophy"></i> Semifinal</span>
-                            <span class="status-locked"><i class="fas fa-circle-info"></i> Locked</span>
+                            <span class="status-upcoming"><i class="fas fa-circle-info"></i> Upcoming</span>
                         </div>
                     </div>
-                    <div class="locked-overlay"><i class="fas fa-lock"></i><span>Locked</span></div>
+                    
                 </div>
-                <div class="fixture-card reveal locked">
+                <div class="fixture-card reveal upcoming stage-semifinal">
                     <div class="fixture-header">
-                        <span class="fixture-date">TBD</span>
-                        <span>TBD (TBD)</span>
+                        <span class="fixture-date">Fri Apr 24</span>
+                        <span>04:00 PM (Evening)</span>
                     </div>
                     <div class="fixture-main">
                         <div class="match-teams">
                             <div class="team-side">
-                                <div class="team-name">1st Place</div>
+                                <div class="team-name">TBD</div>
                                 
                             </div>
                             <div class="vs-box">VS</div>
                             <div class="team-side">
-                                <div class="team-name">SF Winner</div>
+                                <div class="team-name">TBD</div>
                                 
                             </div>
                         </div>
                     </div>
                     <div class="fixture-footer">
                         <div class="match-meta">
-                            <span><i class="fas fa-trophy"></i> Grand Final</span>
+                            <span><i class="fas fa-trophy"></i> Semifinal</span>
+                            <span class="status-upcoming"><i class="fas fa-circle-info"></i> Upcoming</span>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="fixture-card reveal locked stage-final">
+                    <div class="fixture-header">
+                        <span class="fixture-date">Sat Apr 25</span>
+                        <span>04:00 PM (Evening)</span>
+                    </div>
+                    <div class="fixture-main">
+                        <div class="match-teams">
+                            <div class="team-side">
+                                <div class="team-name">TBD</div>
+                                
+                            </div>
+                            <div class="vs-box">VS</div>
+                            <div class="team-side">
+                                <div class="team-name">TBD</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fixture-footer">
+                        <div class="match-meta">
+                            <span><i class="fas fa-trophy"></i> Final</span>
                             <span class="status-locked"><i class="fas fa-circle-info"></i> Locked</span>
                         </div>
                     </div>

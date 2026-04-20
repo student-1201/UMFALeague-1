@@ -434,6 +434,48 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
         }
 
+        /* Knockout Stage Custom Themes */
+        .fixture-card.stage-semifinal {
+            background: linear-gradient(135deg, #a85d24, #78350f, #a85d24) !important;
+            border: 2px solid #b45309 !important;
+        }
+
+        .fixture-card.stage-semifinal .fixture-header,
+        .fixture-card.stage-semifinal .fixture-footer {
+            background: rgba(0, 0, 0, 0.4);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .fixture-card.stage-semifinal .team-name {
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .fixture-card.stage-final {
+            background: linear-gradient(135deg, #f59e0b, #fef3c7, #94a3b8, #fef3c7, #f59e0b) !important;
+            border: 3px solid #f59e0b !important;
+            box-shadow: 0 10px 40px rgba(245, 158, 11, 0.3) !important;
+        }
+
+        .fixture-card.stage-final .fixture-header,
+        .fixture-card.stage-final .fixture-footer {
+            background: rgba(0, 0, 0, 0.15);
+            color: #000;
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .fixture-card.stage-final .team-name,
+        .fixture-card.stage-final .fixture-date,
+        .fixture-card.stage-final .vs-box,
+        .fixture-card.stage-final .goal-scorers {
+            color: #000 !important;
+            font-weight: 800;
+        }
+        
+        .fixture-card community-card {
+            background: var(--navy-card);
+        }
+
         .fixture-header {
             background: rgba(0, 0, 0, 0.3);
             padding: 10px 15px;
