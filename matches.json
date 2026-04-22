@@ -130,9 +130,11 @@
         "session": "Evening",
         "team1": "Malay11",
         "team2": "Krish11",
-        "score1": 0,
-        "score2": 0,
-        "status": "Upcoming",
+        "score1": 2,
+        "score2": 1,
+        "scorers1": ["Alok", "Purusti"],
+        "scorers2": ["Rolex (OG)"],
+        "status": "Completed",
         "stage": "League Match"
     },
     {
