@@ -22,18 +22,16 @@ def calculate_standings(teams, matches):
         standings[t1]['mp'] += 1
         standings[t2]['mp'] += 1
 
+        # GP is now Goal Difference for the match
+        standings[t1]['gp'] += (s1 - s2)
+        standings[t2]['gp'] += (s2 - s1)
+
         if s1 == s2:
-            # Draw rule: GP and GA contribution is 0
             standings[t1]['d'] += 1
             standings[t1]['pts'] += 1
             standings[t2]['d'] += 1
             standings[t2]['pts'] += 1
         else:
-            standings[t1]['gp'] += s1
-            standings[t1]['ga'] += s2
-            standings[t2]['gp'] += s2
-            standings[t2]['ga'] += s1
-            
             if s1 > s2:
                 standings[t1]['w'] += 1
                 standings[t1]['pts'] += 3
@@ -43,8 +41,9 @@ def calculate_standings(teams, matches):
                 standings[t2]['pts'] += 3
                 standings[t1]['l'] += 1
         
-        standings[t1]['gd'] = standings[t1]['gp'] - standings[t1]['ga']
-        standings[t2]['gd'] = standings[t2]['gp'] - standings[t2]['ga']
+        # Keep internal GD synced for logic (though GP is used for display)
+        standings[t1]['gd'] = standings[t1]['gp']
+        standings[t2]['gd'] = standings[t2]['gp']
 
     # Sort by Pts, then GD, then GP, then MP (lower MP is better? user didn't say, I'll use MP as tie-breaker too)
     sorted_standings = sorted(standings.values(), key=lambda x: (x['pts'], x['gd'], x['gp'], -x['mp']), reverse=True)
