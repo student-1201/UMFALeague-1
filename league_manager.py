@@ -186,9 +186,11 @@ def calculate_top_scorers(matches, teams, standings):
     for m in matches:
         if m['status'] == 'Completed':
             for s in m.get('scorers1', []):
-                scorers[s] = scorers.get(s, 0) + 1
+                if "(OG)" not in s:
+                    scorers[s] = scorers.get(s, 0) + 1
             for s in m.get('scorers2', []):
-                scorers[s] = scorers.get(s, 0) + 1
+                if "(OG)" not in s:
+                    scorers[s] = scorers.get(s, 0) + 1
     
     # Format: list of {'name', 'goals', 'mp'}
     scorer_list = []
