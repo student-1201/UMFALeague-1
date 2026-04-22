@@ -644,6 +644,50 @@
             background: var(--navy-card);
         }
 
+        .hidden-row {
+            display: none;
+        }
+
+        .show-all .hidden-row {
+            display: table-row;
+        }
+
+        .table-actions {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .btn-show-more {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--accent-font);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-show-more:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            border-color: var(--blue);
+            box-shadow: 0 5px 15px rgba(0, 210, 255, 0.2);
+        }
+
+        .btn-show-more i {
+            transition: transform 0.3s ease;
+        }
+
+        .show-all .btn-show-more i {
+            transform: rotate(180deg);
+        }
+
         th {
             background: rgba(0, 0, 0, 0.5);
             padding: 18px 15px;
@@ -1290,6 +1334,22 @@
         window.addEventListener('scroll', revealOnScroll);
         // Initial call
         revealOnScroll();
+
+        // Top Scorers Toggle
+        const toggleBtn = document.getElementById('toggle-scorers');
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', function() {
+                const scorersSection = document.getElementById('scorers');
+                scorersSection.classList.toggle('show-all');
+                
+                const span = this.querySelector('span');
+                if (scorersSection.classList.contains('show-all')) {
+                    span.textContent = 'Show Less';
+                } else {
+                    span.textContent = 'Show All Scorers';
+                }
+            });
+        }
     </script>
 </body>
 </html>

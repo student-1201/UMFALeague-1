@@ -223,16 +223,28 @@ def generate_top_scorers_html(scorers):
         rank_icon = ""
         if current_rank == 1: rank_icon = '<i class="fas fa-crown" style="color: var(--gold); margin-right: 10px;"></i>'
         
+        row_class = "hidden-row" if i >= 5 else ""
+        
         rows += f"""
-                    <tr>
+                    <tr class="{row_class}">
                         <td class="pos">{current_rank}</td>
                         <td class="team-cell">{rank_icon}{s['name']}</td>
                         <td class="stat" style="text-align: center;">{s['mp']}</td>
                         <td class="pts" style="text-align: center;">{s['goals']}</td>
                     </tr>"""
     
+    toggle_btn = ""
+    if len(scorers) > 5:
+        toggle_btn = f"""
+                <div class="table-actions reveal">
+                    <button id="toggle-scorers" class="btn-show-more">
+                        <span>Show All Scorers</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>"""
+
     return f"""
-                <div class="table-responsive reveal">
+                <div class="table-responsive reveal" id="scorers-table-wrapper">
                     <table>
                         <thead>
                             <tr>
@@ -246,7 +258,8 @@ def generate_top_scorers_html(scorers):
                             {rows}
                         </tbody>
                     </table>
-                </div>"""
+                </div>
+                {toggle_btn}"""
 def main():
     teams = load_json('teams.json')
     matches = load_json('matches.json')
