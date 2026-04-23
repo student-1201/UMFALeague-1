@@ -145,8 +145,10 @@
         "team1": "Malay11",
         "team2": "Khagesh11",
         "score1": 0,
-        "score2": 0,
-        "status": "Upcoming",
+        "score2": 2,
+        "scorers1": [],
+        "scorers2": ["Gideon", "Gideon"],
+        "status": "Completed",
         "stage": "League Match"
     },
     {
