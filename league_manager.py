@@ -306,8 +306,21 @@ def main():
     
     highlights_text += "MITS COLLEGE PLAYGROUND | DESIGNED FOR CHAMPIONS"
 
-    completed_count = len([m for m in matches if m['status'] == 'Completed' and m['stage'] == 'League Match'])
-    progress_percent = (completed_count / 10) * 100
+    completed_league = len([m for m in matches if m['status'] == 'Completed' and m['stage'] == 'League Match'])
+    any_sf_upcoming = any(m['status'] != 'Locked' and m['stage'] == 'Semifinal' for m in matches)
+    any_sf_completed = any(m['status'] == 'Completed' and m['stage'] == 'Semifinal' for m in matches)
+    any_final_upcoming = any(m['status'] != 'Locked' and m['stage'] == 'Final' for m in matches)
+    any_final_completed = any(m['status'] == 'Completed' and m['stage'] == 'Final' for m in matches)
+
+    stage_group_active = "active"
+    stage_sf_active = "active" if (completed_league >= 10 or any_sf_upcoming or any_sf_completed) else ""
+    stage_final_active = "active" if (any_sf_completed or any_final_upcoming or any_final_completed) else ""
+    stage_champion_active = "active" if any_final_completed else ""
+
+    # Progress bar percentage (10 league + 1 SF + 1 Final = 12 matches)
+    total_matches = 12
+    completed_total = len([m for m in matches if m['status'] == 'Completed'])
+    progress_percent = (completed_total / total_matches) * 100
 
     # Load template
     if not os.path.exists('template.html'):
@@ -323,8 +336,12 @@ def main():
     output = output.replace('{{SQUADS}}', squads_html)
     output = output.replace('{{TOP_SCORERS}}', scorers_html)
     output = output.replace('{{HIGHLIGHTS}}', highlights_text)
-    output = output.replace('{{COMPLETED_MATCHES}}', str(completed_count))
+    output = output.replace('{{COMPLETED_MATCHES}}', str(completed_league))
     output = output.replace('{{PROGRESS_PERCENT}}', str(progress_percent))
+    output = output.replace('{{STAGE_GROUP_ACTIVE}}', stage_group_active)
+    output = output.replace('{{STAGE_SF_ACTIVE}}', stage_sf_active)
+    output = output.replace('{{STAGE_FINAL_ACTIVE}}', stage_final_active)
+    output = output.replace('{{STAGE_CHAMPION_ACTIVE}}', stage_champion_active)
 
     # Write final HTML
     with open('umfa.html', 'w', encoding='utf-8') as f:
