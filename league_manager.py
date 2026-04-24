@@ -336,12 +336,8 @@ def main():
     output = output.replace('{{SQUADS}}', squads_html)
     output = output.replace('{{TOP_SCORERS}}', scorers_html)
     output = output.replace('{{HIGHLIGHTS}}', highlights_text)
-    output = output.replace('{{COMPLETED_MATCHES}}', str(completed_league))
+    output = output.replace('{{COMPLETED_TOTAL}}', str(completed_total))
     output = output.replace('{{PROGRESS_PERCENT}}', str(progress_percent))
-    output = output.replace('{{STAGE_GROUP_ACTIVE}}', stage_group_active)
-    output = output.replace('{{STAGE_SF_ACTIVE}}', stage_sf_active)
-    output = output.replace('{{STAGE_FINAL_ACTIVE}}', stage_final_active)
-    output = output.replace('{{STAGE_CHAMPION_ACTIVE}}', stage_champion_active)
 
     # Write final HTML
     with open('umfa.html', 'w', encoding='utf-8') as f:
