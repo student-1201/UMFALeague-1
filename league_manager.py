@@ -295,9 +295,10 @@ def main():
     latest_completed = [m for m in matches if m['status'] == 'Completed']
     highlights_text = "UMFA LEAGUE - 1 CHAMPIONSHIP 2026 | "
     if latest_completed:
-        latest = max(latest_completed, key=lambda x: str(x['id']))
+        latest = max(latest_completed, key=lambda x: int(x['id']))
+        match_label = f"MATCH {latest['id']}" if latest['stage'] == 'League Match' else latest['stage'].upper()
         scorers_info = f" | SCORERS: {latest['team1']} - {format_scorers_ui(latest.get('scorers1', []))} | {latest['team2']} - {format_scorers_ui(latest.get('scorers2', []))}"
-        highlights_text += f"LATEST RESULT: MATCH {latest['id']} - {latest['team1']} {latest['score1']} - {latest['score2']} {latest['team2']}{scorers_info} | "
+        highlights_text += f"LATEST RESULT: {match_label} - {latest['team1']} {latest['score1']} - {latest['score2']} {latest['team2']}{scorers_info} | "
     
     next_match = next((m for m in matches if m['status'] == 'Upcoming'), None)
     if next_match:
