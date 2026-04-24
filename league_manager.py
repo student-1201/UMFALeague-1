@@ -347,7 +347,7 @@ def main():
     with open('umfa.html', 'w', encoding='utf-8') as f:
         f.write(output)
     
-    print(f"Successfully updated umfa.html. Progress: {completed_count}/10 matches.")
+    print(f"Successfully updated umfa.html. Progress: {completed_league}/10 matches.")
 
 if __name__ == "__main__":
     main()
