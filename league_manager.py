@@ -90,10 +90,28 @@ def generate_fixtures_html(matches):
         stage_class = f"stage-{m['stage'].lower().replace(' ', '-')}"
 
         penalty_html = ""
-        if m.get('penalty1') or m.get('penalty2'):
+        vs_content = f"{m['score1']} - {m['score2']}" if m['status'] == 'Completed' else "VS"
+        
+        # Special handling for Final with Penalties
+        if m['stage'] == 'Final' and m['status'] == 'Completed' and (m.get('penalty1') or m.get('penalty2')):
+            p1_raw = m.get('penalty1', '0')
+            p2_raw = m.get('penalty2', '0')
+            # Extract just the numbers for the vs-box
+            import re
+            p1_num = re.search(r'(\d+)', str(p1_raw)).group(1) if re.search(r'(\d+)', str(p1_raw)) else "0"
+            p2_num = re.search(r'(\d+)', str(p2_raw)).group(1) if re.search(r'(\d+)', str(p2_raw)) else "0"
+            vs_content = f"Penalties: {p1_num} - {p2_num}"
+            
+            # Show full penalty names as "scorers"
+            scorers_html1 = f'<div class="goal-scorers" style="color: #FFD700; font-weight: bold;">{p1_raw}</div>'
+            scorers_html2 = f'<div class="goal-scorers" style="color: #FFD700; font-weight: bold;">{p2_raw}</div>'
+        elif m.get('penalty1') or m.get('penalty2'):
             p1 = m.get('penalty1', '0')
             p2 = m.get('penalty2', '0')
             penalty_html = f'<div class="penalty-score" style="text-align: center; font-family: \'Barlow Condensed\', sans-serif; font-size: 1.1rem; color: #fff; margin-top: 10px; background: rgba(255,255,255,0.1); padding: 5px; border-radius: 4px;">Penalties: {p1} - {p2}</div>'
+
+        # Adjust vs-box width for penalty text
+        vs_style = 'style="min-width: 150px; font-size: 1.2rem;"' if "Penalties" in vs_content else ""
 
         html += f"""
                 <div class="fixture-card reveal {status_class} {stage_class}">
@@ -107,7 +125,7 @@ def generate_fixtures_html(matches):
                                 <div class="team-name">{m['team1']}</div>
                                 {scorers_html1}
                             </div>
-                            <div class="vs-box">{"VS" if m['status'] != 'Completed' else f"{m['score1']} - {m['score2']}"}</div>
+                            <div class="vs-box" {vs_style}>{vs_content}</div>
                             <div class="team-side">
                                 <div class="team-name">{m['team2']}</div>
                                 {scorers_html2}
