@@ -138,7 +138,7 @@ def generate_fixtures_html(matches):
                     <div class="fixture-footer">
                         <div class="match-meta">
                             <span><i class="fas fa-trophy"></i> {m['stage']}</span>
-                            <span class="{status_label_class}" {"style='background: #000; color: #fff; border-color: #333;'" if m['stage'] in ['Semifinal', 'Final', 'Grand Final'] and m['status'] == 'Completed' else ""}><i class="fas fa-circle-info"></i> {m['status']}</span>
+                            <span class="{status_label_class}" {"style='color: #000 !important; font-weight: 700;'" if m['stage'] in ['Semifinal', 'Final', 'Grand Final'] and m['status'] == 'Completed' else ""}><i class="fas fa-circle-info"></i> {m['status']}</span>
                         </div>
                     </div>
                     {locked_overlay}
