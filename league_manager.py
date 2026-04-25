@@ -321,12 +321,6 @@ def main():
     
     # Generate Highlights Ticker
     highlights_text = "UMFA LEAGUE - 1 IS COMPLETED | LEAGUE - 2 IS COMING SOON | MITS COLLEGE PLAYGROUND | DESIGNED FOR CHAMPIONS"
-    
-    next_match = next((m for m in matches if m['status'] == 'Upcoming'), None)
-    if next_match:
-        highlights_text += f"NEXT UP: {next_match['team1']} VS {next_match['team2']} ({next_match['date']} {next_match['time']}) | "
-    
-    highlights_text += "MITS COLLEGE PLAYGROUND | DESIGNED FOR CHAMPIONS"
 
     completed_league = len([m for m in matches if m['status'] == 'Completed' and m['stage'] == 'League Match'])
     any_sf_upcoming = any(m['status'] != 'Locked' and m['stage'] == 'Semifinal' for m in matches)
