@@ -102,14 +102,14 @@ def generate_fixtures_html(matches):
             p2_num = re.search(r'(\d+)', str(p2_raw)).group(1) if re.search(r'(\d+)', str(p2_raw)) else "0"
             
             # Extract names from strings like "1 (Charan)"
-            p1_names = re.search(r'\((.*?)\)', str(p1_raw)).group(1) if '(' in str(p1_raw) else ""
-            p2_names = re.search(r'\((.*?)\)', str(p2_raw)).group(1) if '(' in str(p2_raw) else ""
+            p1_names = re.search(r'\((.*?)\)', str(p1_raw)).group(1) if '(' in str(p1_raw) else str(p1_raw)
+            p2_names = re.search(r'\((.*?)\)', str(p2_raw)).group(1) if '(' in str(p2_raw) else str(p2_raw)
             
-            vs_content = f'<div style="display: flex; flex-direction: column; gap: 8px; align-items: center;"><div class="vs-box" style="margin: 0;">{m["score1"]} - {m["score2"]}</div><div class="vs-box" style="margin: 0; background: #000; color: #fff; border-color: #333; font-size: 0.85rem; min-width: 250px; padding: 6px 15px; border-radius: 20px;">{p1_names} - Penalties: {p1_num} - {p2_num} - {p2_names}</div></div>'
+            vs_content = f'<div style="display: flex; flex-direction: column; gap: 8px; align-items: center;"><div class="vs-box" style="margin: 0;">{m["score1"]} - {m["score2"]}</div><div class="vs-box" style="margin: 0; background: #000; color: #fff; border-color: #333; font-size: 0.85rem; min-width: 130px; padding: 4px 8px;">Penalties: {p1_num} - {p2_num}</div></div>'
             
-            # Remove separate penalty scorers as they are now in the box
-            scorers_html1 = ""
-            scorers_html2 = ""
+            # Put names back below team names
+            scorers_html1 = f'<div class="goal-scorers" style="color: #FFD700; font-weight: bold;">{p1_names}</div>'
+            scorers_html2 = f'<div class="goal-scorers" style="color: #FFD700; font-weight: bold;">{p2_names}</div>'
         elif m.get('penalty1') or m.get('penalty2'):
             p1 = m.get('penalty1', '0')
             p2 = m.get('penalty2', '0')
