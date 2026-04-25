@@ -100,7 +100,7 @@ def generate_fixtures_html(matches):
             import re
             p1_num = re.search(r'(\d+)', str(p1_raw)).group(1) if re.search(r'(\d+)', str(p1_raw)) else "0"
             p2_num = re.search(r'(\d+)', str(p2_raw)).group(1) if re.search(r'(\d+)', str(p2_raw)) else "0"
-            vs_content = f"{m['score1']} - {m['score2']}<br><span style='font-size: 0.9rem; opacity: 0.9;'>(Pen: {p1_num}-{p2_num})</span>"
+            vs_content = f'<div style="line-height: 1.2;"><div>{m["score1"]} - {m["score2"]}</div><div style="font-size: 0.8rem; color: #FFD700; margin-top: 4px;">Penalties: {p1_num} - {p2_num}</div></div>'
             
             # Show full penalty names as "scorers"
             scorers_html1 = f'<div class="goal-scorers" style="color: #FFD700; font-weight: bold;">{p1_raw}</div>'
