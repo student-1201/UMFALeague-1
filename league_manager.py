@@ -89,6 +89,12 @@ def generate_fixtures_html(matches):
         status_label_class = f"status-{m['status'].lower()}"
         stage_class = f"stage-{m['stage'].lower().replace(' ', '-')}"
 
+        penalty_html = ""
+        if m.get('penalty1') or m.get('penalty2'):
+            p1 = m.get('penalty1', '0')
+            p2 = m.get('penalty2', '0')
+            penalty_html = f'<div class="penalty-score" style="text-align: center; font-family: \'Barlow Condensed\', sans-serif; font-size: 1.1rem; color: #fff; margin-top: 10px; background: rgba(255,255,255,0.1); padding: 5px; border-radius: 4px;">Penalties: {p1} - {p2}</div>'
+
         html += f"""
                 <div class="fixture-card reveal {status_class} {stage_class}">
                     <div class="fixture-header">
@@ -107,6 +113,7 @@ def generate_fixtures_html(matches):
                                 {scorers_html2}
                             </div>
                         </div>
+                        {penalty_html}
                     </div>
                     <div class="fixture-footer">
                         <div class="match-meta">
@@ -322,6 +329,31 @@ def main():
     completed_total = len([m for m in matches if m['status'] == 'Completed'])
     progress_percent = (completed_total / total_matches) * 100
 
+    # Identify Champion and Runner Up
+    final_match = next((m for m in matches if m['stage'] == 'Final'), None)
+    champion_name = "TBD"
+    runner_up_name = "TBD"
+    
+    if final_match and final_match['status'] == 'Completed':
+        # Logic to determine winner from penalties if score is tied
+        p1_score = 0
+        p2_score = 0
+        if final_match.get('penalty1'):
+            import re
+            p1_match = re.search(r'(\d+)', final_match['penalty1'])
+            if p1_match: p1_score = int(p1_match.group(1))
+        if final_match.get('penalty2'):
+            import re
+            p2_match = re.search(r'(\d+)', final_match['penalty2'])
+            if p2_match: p2_score = int(p2_match.group(1))
+            
+        if final_match['score1'] > final_match['score2'] or p1_score > p2_score:
+            champion_name = final_match['team1']
+            runner_up_name = final_match['team2']
+        elif final_match['score2'] > final_match['score1'] or p2_score > p1_score:
+            champion_name = final_match['team2']
+            runner_up_name = final_match['team1']
+
     # Load template
     if not os.path.exists('template.html'):
         print("Error: template.html not found.")
@@ -332,6 +364,9 @@ def main():
 
     # Replace placeholders
     output = template.replace('{{FIXTURES}}', fixtures_html)
+    output = output.replace('{{STAGE_CHAMPION_ACTIVE}}', stage_champion_active)
+    output = output.replace('{{CHAMPION_NAME}}', champion_name)
+    output = output.replace('{{RUNNER_UP_NAME}}', runner_up_name)
     output = output.replace('{{STANDINGS}}', standings_html)
     output = output.replace('{{SQUADS}}', squads_html)
     output = output.replace('{{TOP_SCORERS}}', scorers_html)

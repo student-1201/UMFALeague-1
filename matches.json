@@ -188,7 +188,9 @@
         "team2": "Malay11",
         "score1": 0,
         "score2": 0,
-        "status": "Upcoming",
+        "penalty1": "1 (Charan)",
+        "penalty2": "3 (Malay, Alok, Karna)",
+        "status": "Completed",
         "stage": "Final"
     }
 ]
