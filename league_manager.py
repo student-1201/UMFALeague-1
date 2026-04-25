@@ -309,7 +309,8 @@ def main():
             "status": "Locked", "stage": "Grand Final"
         })
 
-    standings = calculate_standings(teams, matches)
+    league_only_matches = [m for m in matches if m['stage'] == 'League Match']
+    standings = calculate_standings(teams, league_only_matches)
     top_scorers = calculate_top_scorers(matches, teams, standings)
     
     # Generate HTML chunks
