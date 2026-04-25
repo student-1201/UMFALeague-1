@@ -1347,6 +1347,8 @@
                     span.textContent = 'Show Less';
                 } else {
                     span.textContent = 'Show All Scorers';
+                    // Scroll back to the top of the section
+                    scorersSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         }
