@@ -1101,9 +1101,8 @@
     <!-- PROGRESS OVERVIEW -->
     <section id="overview" class="progress-section">
         <div class="container tracker-container">
-            <div class="progress-header">
-                <div class="progress-status">League is completed...</div>
-                <div class="progress-matches">12 / 12 Total Matches Completed</div>
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h2 style="font-family: 'Bebas Neue', cursive; font-size: 3.5rem; letter-spacing: 2px; margin: 0; background: linear-gradient(90deg, #00d2ff, #FFD700, #000, #FFD700, #00d2ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));">TOURNAMENT IS COMPLETED</h2>
             </div>
             
             <!-- Championship Boxes -->
@@ -1127,9 +1126,6 @@
                     100% { transform: scale(1); box-shadow: 0 10px 30px rgba(255,215,0,0.3); }
                 }
             </style>
-            <div class="progress-bar-bg">
-                <div class="progress-bar-fill" id="progress-bar"></div>
-            </div>
 
             <!-- Highlights Ticker Moved to Bottom of Card -->
             <div class="highlights-ticker" style="margin-top: 40px; margin-bottom: 5px; background: linear-gradient(90deg, #991b1b, #451a03, #000, #451a03, #991b1b); border: 2px solid #fff; border-radius: 12px; padding: 12px 0; overflow: hidden; white-space: nowrap; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
@@ -1917,7 +1913,7 @@
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const bar = document.getElementById('progress-bar');
-                bar.style.width = '100.0%';
+                bar.style.width = '{{PROGRESS_PERCENT}}%';
             }, 500);
         });
 

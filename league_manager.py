@@ -371,8 +371,6 @@ def main():
     output = output.replace('{{SQUADS}}', squads_html)
     output = output.replace('{{TOP_SCORERS}}', scorers_html)
     output = output.replace('{{HIGHLIGHTS}}', highlights_text)
-    output = output.replace('{{COMPLETED_TOTAL}}', str(completed_total))
-    output = output.replace('{{PROGRESS_PERCENT}}', str(progress_percent))
 
     # Write final HTML
     with open('umfa.html', 'w', encoding='utf-8') as f:
