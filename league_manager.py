@@ -320,13 +320,7 @@ def main():
     scorers_html = generate_top_scorers_html(top_scorers)
     
     # Generate Highlights Ticker
-    highlights_text = "UMFA LEAGUE - 1 IS COMPLETED | WAIT FOR LEAGUE 2 | "
-    latest_completed = [m for m in matches if m['status'] == 'Completed']
-    if latest_completed:
-        latest = max(latest_completed, key=lambda x: int(x['id']))
-        match_label = f"MATCH {latest['id']}" if latest['stage'] == 'League Match' else latest['stage'].upper()
-        scorers_info = f" | SCORERS: {latest['team1']} - {format_scorers_ui(latest.get('scorers1', []))} | {latest['team2']} - {format_scorers_ui(latest.get('scorers2', []))}"
-        highlights_text += f"LATEST RESULT: {match_label} - {latest['team1']} {latest['score1']} - {latest['score2']} {latest['team2']}{scorers_info} | "
+    highlights_text = "UMFA LEAGUE - 1 IS COMPLETED | LEAGUE - 2 IS COMING SOON | MITS COLLEGE PLAYGROUND | DESIGNED FOR CHAMPIONS"
     
     next_match = next((m for m in matches if m['status'] == 'Upcoming'), None)
     if next_match:
